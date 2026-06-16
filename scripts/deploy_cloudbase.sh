@@ -27,4 +27,4 @@ if ! command -v npm >/dev/null 2>&1; then
 fi
 
 npm run build
-npx --yes @cloudbase/cli@latest hosting deploy dist -e "$CLOUDBASE_ENV_ID"
+npx --yes --package @cloudbase/cli@latest tcb hosting deploy dist -e "$CLOUDBASE_ENV_ID"
