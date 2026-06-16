@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-16T18:05:44",
+  "generatedAt": "2026-06-17T01:42:42",
   "account": {
-    "accountId": "paper-main",
-    "accountName": "模拟盘主账户",
+    "accountId": "paper-real-smoke",
+    "accountName": "真实数据烟测账户",
     "mode": "paper",
     "strategyName": "manual_signal",
     "initialCash": 500000.0,
-    "totalAsset": 501304.31,
-    "cash": 323467.32,
-    "marketValue": 177836.99,
-    "cumulativeReturn": 0.002609,
+    "totalAsset": 501383.62,
+    "cash": 282082.76,
+    "marketValue": 219300.85,
+    "cumulativeReturn": 0.002767,
     "maxDrawdown": 0.0,
-    "positionCount": 4,
+    "positionCount": 5,
     "lastTradeDate": "2024-03-29",
     "status": "active",
-    "createdAt": "2026-06-16T18:05:44",
-    "updatedAt": "2026-06-16T18:05:44"
+    "createdAt": "2026-06-16T17:31:24",
+    "updatedAt": "2026-06-17T01:42:42"
   },
   "positions": [
     {
@@ -25,15 +25,15 @@
       "name": "平安银行",
       "industry": "股票",
       "quantity": 5600,
-      "availableQuantity": 0,
+      "availableQuantity": 5600,
       "costPrice": 8.7806,
       "marketPrice": 8.8327,
       "marketValue": 49463.05,
-      "weight": 0.098669,
+      "weight": 0.098653,
       "unrealizedPnl": 291.78,
       "unrealizedPnlPct": 0.005934,
       "stopPrice": 8.0781,
-      "holdingDays": 1
+      "holdingDays": 4
     },
     {
       "tradeDate": "2024-03-29",
@@ -41,15 +41,15 @@
       "name": "招商银行",
       "industry": "股票",
       "quantity": 1700,
-      "availableQuantity": 0,
+      "availableQuantity": 1700,
       "costPrice": 28.312,
       "marketPrice": 28.3787,
       "marketValue": 48243.73,
-      "weight": 0.096236,
+      "weight": 0.096221,
       "unrealizedPnl": 113.27,
       "unrealizedPnlPct": 0.002353,
       "stopPrice": 26.0471,
-      "holdingDays": 1
+      "holdingDays": 4
     },
     {
       "tradeDate": "2024-03-29",
@@ -57,15 +57,31 @@
       "name": "中际旭创",
       "industry": "股票",
       "quantity": 400,
-      "availableQuantity": 0,
+      "availableQuantity": 400,
       "costPrice": 109.1114,
       "marketPrice": 111.4925,
       "marketValue": 44596.99,
-      "weight": 0.088962,
+      "weight": 0.088948,
       "unrealizedPnl": 952.45,
       "unrealizedPnlPct": 0.021823,
       "stopPrice": 100.3824,
-      "holdingDays": 1
+      "holdingDays": 4
+    },
+    {
+      "tradeDate": "2024-03-29",
+      "tsCode": "000858.SZ",
+      "name": "五粮液",
+      "industry": "股票",
+      "quantity": 300,
+      "availableQuantity": 300,
+      "costPrice": 137.9485,
+      "marketPrice": 138.2129,
+      "marketValue": 41463.86,
+      "weight": 0.082699,
+      "unrealizedPnl": 79.31,
+      "unrealizedPnlPct": 0.001916,
+      "stopPrice": 126.9126,
+      "holdingDays": 3
     },
     {
       "tradeDate": "2024-03-29",
@@ -73,135 +89,37 @@
       "name": "宁德时代",
       "industry": "股票",
       "quantity": 200,
-      "availableQuantity": 0,
+      "availableQuantity": 200,
       "costPrice": 177.9321,
       "marketPrice": 177.6661,
       "marketValue": 35533.22,
-      "weight": 0.070882,
+      "weight": 0.07087,
       "unrealizedPnl": -53.19,
       "unrealizedPnlPct": -0.001495,
       "stopPrice": 163.6975,
-      "holdingDays": 1
+      "holdingDays": 4
     }
   ],
   "equityCurve": [
     {
       "tradeDate": "2024-03-29",
-      "totalAsset": 501304.31,
-      "cash": 323467.32,
-      "marketValue": 177836.99,
-      "dailyReturn": 0.002609,
-      "cumulativeReturn": 0.002609,
+      "totalAsset": 501383.62,
+      "cash": 282082.76,
+      "marketValue": 219300.85,
+      "dailyReturn": 0.0,
+      "cumulativeReturn": 0.002767,
       "drawdown": 0.0,
       "maxDrawdown": 0.0,
-      "positionCount": 4,
-      "totalWeight": 0.354749
+      "positionCount": 5,
+      "totalWeight": 0.437391
     }
   ],
-  "orders": [
-    {
-      "orderId": "3f15386afaaf486ab3d9e0b31cfe6bb0",
-      "tradeDate": "2024-03-29",
-      "tsCode": "300750.SZ",
-      "side": "buy",
-      "orderPrice": 177.7969,
-      "orderQuantity": 200,
-      "filledQuantity": 200,
-      "avgFillPrice": 177.8858,
-      "status": "filled",
-      "rejectReason": ""
-    },
-    {
-      "orderId": "68a80e46d4f44eaea8acbcc82bc68e9f",
-      "tradeDate": "2024-03-29",
-      "tsCode": "600036.SH",
-      "side": "buy",
-      "orderPrice": 28.2905,
-      "orderQuantity": 1700,
-      "filledQuantity": 1700,
-      "avgFillPrice": 28.3047,
-      "status": "filled",
-      "rejectReason": ""
-    },
-    {
-      "orderId": "9e0f46ad19524c86a53c41c40e0c27fa",
-      "tradeDate": "2024-03-29",
-      "tsCode": "000001.SZ",
-      "side": "buy",
-      "orderPrice": 8.7739,
-      "orderQuantity": 5600,
-      "filledQuantity": 5600,
-      "avgFillPrice": 8.7783,
-      "status": "filled",
-      "rejectReason": ""
-    },
-    {
-      "orderId": "d0ea5dad7d3a439b8302f0ff07be1263",
-      "tradeDate": "2024-03-29",
-      "tsCode": "300308.SZ",
-      "side": "buy",
-      "orderPrice": 109.0285,
-      "orderQuantity": 400,
-      "filledQuantity": 400,
-      "avgFillPrice": 109.083,
-      "status": "filled",
-      "rejectReason": ""
-    }
-  ],
-  "fills": [
-    {
-      "fillId": "2024-03-29-000001-600036.SH-buy",
-      "tradeDate": "2024-03-29",
-      "tsCode": "600036.SH",
-      "side": "buy",
-      "quantity": 1700,
-      "price": 28.3047,
-      "commission": 12.0295,
-      "stampTax": 0.0,
-      "transferFee": 0.4812,
-      "fee": 12.5107
-    },
-    {
-      "fillId": "2024-03-29-000002-300750.SZ-buy",
-      "tradeDate": "2024-03-29",
-      "tsCode": "300750.SZ",
-      "side": "buy",
-      "quantity": 200,
-      "price": 177.8858,
-      "commission": 8.8943,
-      "stampTax": 0.0,
-      "transferFee": 0.3558,
-      "fee": 9.2501
-    },
-    {
-      "fillId": "2024-03-29-000003-000001.SZ-buy",
-      "tradeDate": "2024-03-29",
-      "tsCode": "000001.SZ",
-      "side": "buy",
-      "quantity": 5600,
-      "price": 8.7783,
-      "commission": 12.2896,
-      "stampTax": 0.0,
-      "transferFee": 0.4916,
-      "fee": 12.7812
-    },
-    {
-      "fillId": "2024-03-29-000004-300308.SZ-buy",
-      "tradeDate": "2024-03-29",
-      "tsCode": "300308.SZ",
-      "side": "buy",
-      "quantity": 400,
-      "price": 109.083,
-      "commission": 10.9083,
-      "stampTax": 0.0,
-      "transferFee": 0.4363,
-      "fee": 11.3446
-    }
-  ],
+  "orders": [],
+  "fills": [],
   "summary": {
-    "orderCount": 4,
-    "fillCount": 4,
-    "positionCount": 4,
+    "orderCount": 0,
+    "fillCount": 0,
+    "positionCount": 5,
     "equityPointCount": 1
   }
 }

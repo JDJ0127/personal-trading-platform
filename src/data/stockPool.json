@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "tradeDate": "2024-03-29",
   "summary": {
-    "total": 5,
-    "passed": 5,
+    "total": 30,
+    "passed": 30,
     "blocked": 0,
     "passRate": 1.0
   },
@@ -19,6 +19,83 @@
       "close": 8.83268668,
       "amount": 917332315.96,
       "avgAmount": 1547941935.5475001
+    },
+    {
+      "tsCode": "000333.SZ",
+      "name": "美的集团",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 3845,
+      "close": 58.31587008,
+      "amount": 1638381689.95,
+      "avgAmount": 2132769985.94
+    },
+    {
+      "tsCode": "000651.SZ",
+      "name": "格力电器",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 9993,
+      "close": 33.94410638,
+      "amount": 926421709.71,
+      "avgAmount": 1575215473.8259997
+    },
+    {
+      "tsCode": "000858.SZ",
+      "name": "五粮液",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 9468,
+      "close": 138.21288201,
+      "amount": 1358438656.59,
+      "avgAmount": 2789113016.952
+    },
+    {
+      "tsCode": "002415.SZ",
+      "name": "海康威视",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 5054,
+      "close": 29.50818288,
+      "amount": 951453044.88,
+      "avgAmount": 1258525167.7775
+    },
+    {
+      "tsCode": "002475.SZ",
+      "name": "立讯精密",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 4944,
+      "close": 28.94111637,
+      "amount": 2013985448.91,
+      "avgAmount": 3414248036.0464997
+    },
+    {
+      "tsCode": "002594.SZ",
+      "name": "比亚迪",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 4656,
+      "close": 66.07592706,
+      "amount": 2873380485.75,
+      "avgAmount": 3050753504.0645
+    },
+    {
+      "tsCode": "300059.SZ",
+      "name": "东方财富",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 5124,
+      "close": 12.74706279,
+      "amount": 1467113689.79,
+      "avgAmount": 2634593038.2475004
     },
     {
       "tsCode": "300308.SZ",
@@ -43,6 +120,17 @@
       "avgAmount": 5348375635.111499
     },
     {
+      "tsCode": "300760.SZ",
+      "name": "迈瑞医疗",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 1991,
+      "close": 265.38413064,
+      "amount": 566899193.82,
+      "avgAmount": 982627417.0459998
+    },
+    {
       "tsCode": "600030.SH",
       "name": "中信证券",
       "industry": "股票",
@@ -63,6 +151,193 @@
       "close": 28.378665,
       "amount": 1663236764.05,
       "avgAmount": 1965262128.9595
+    },
+    {
+      "tsCode": "600276.SH",
+      "name": "恒瑞医药",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 8563,
+      "close": 45.39372008,
+      "amount": 857879350.53,
+      "avgAmount": 1455916106.1804998
+    },
+    {
+      "tsCode": "600309.SH",
+      "name": "万华化学",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 8484,
+      "close": 78.3098388,
+      "amount": 1186856152.19,
+      "avgAmount": 980629857.165
+    },
+    {
+      "tsCode": "600406.SH",
+      "name": "国电南瑞",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 7470,
+      "close": 23.07719212,
+      "amount": 237188066.01,
+      "avgAmount": 586416388.3325002
+    },
+    {
+      "tsCode": "600519.SH",
+      "name": "贵州茅台",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 8250,
+      "close": 1584.1022902,
+      "amount": 2290584417.12,
+      "avgAmount": 4191979334.319499
+    },
+    {
+      "tsCode": "600887.SH",
+      "name": "伊利股份",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 10244,
+      "close": 24.3703152,
+      "amount": 770574678.99,
+      "avgAmount": 1092651368.1685
+    },
+    {
+      "tsCode": "601012.SH",
+      "name": "隆基绿能",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 4370,
+      "close": 19.27609461,
+      "amount": 1420515919.97,
+      "avgAmount": 2544919618.2020006
+    },
+    {
+      "tsCode": "601138.SH",
+      "name": "工业富联",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 2121,
+      "close": 21.60834291,
+      "amount": 3846707806.55,
+      "avgAmount": 7398059103.238501
+    },
+    {
+      "tsCode": "601288.SH",
+      "name": "农业银行",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 5006,
+      "close": 3.70579725,
+      "amount": 1539840258.52,
+      "avgAmount": 1504941289.482
+    },
+    {
+      "tsCode": "601318.SH",
+      "name": "中国平安",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 6238,
+      "close": 35.84644294,
+      "amount": 1370420386.58,
+      "avgAmount": 2057643328.2270005
+    },
+    {
+      "tsCode": "601398.SH",
+      "name": "工商银行",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 6363,
+      "close": 4.62180576,
+      "amount": 1217142787.08,
+      "avgAmount": 1481303182.4255002
+    },
+    {
+      "tsCode": "601668.SH",
+      "name": "中国建筑",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 5357,
+      "close": 4.76005268,
+      "amount": 782803636.84,
+      "avgAmount": 806997161.9995
+    },
+    {
+      "tsCode": "601857.SH",
+      "name": "中国石油",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 5989,
+      "close": 8.89594212,
+      "amount": 2568975097.59,
+      "avgAmount": 1744444207.5965
+    },
+    {
+      "tsCode": "601888.SH",
+      "name": "中国中免",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 5279,
+      "close": 81.73062478,
+      "amount": 1189844686.72,
+      "avgAmount": 1759960826.2905
+    },
+    {
+      "tsCode": "601899.SH",
+      "name": "紫金矿业",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 5817,
+      "close": 16.15900764,
+      "amount": 3491214364.75,
+      "avgAmount": 2837794357.5755005
+    },
+    {
+      "tsCode": "601988.SH",
+      "name": "中国银行",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 6477,
+      "close": 3.9282804,
+      "amount": 745651755.68,
+      "avgAmount": 761074630.457
+    },
+    {
+      "tsCode": "603259.SH",
+      "name": "药明康德",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 2152,
+      "close": 43.26202434,
+      "amount": 3445841853.06,
+      "avgAmount": 5956996134.8585005
+    },
+    {
+      "tsCode": "688981.SH",
+      "name": "中芯国际",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 1352,
+      "close": 43.66,
+      "amount": 717917544.23,
+      "avgAmount": 992022841.5479997
     }
   ]
 }

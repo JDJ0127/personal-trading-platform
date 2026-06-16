@@ -1,30 +1,30 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-16T20:57:01",
-  "database": "data/baostock_frontend.sqlite",
+  "generatedAt": "2026-06-17T01:42:42",
+  "database": "data/real_smoke/baostock_smoke.sqlite",
   "summary": {
     "latestTradeDate": "2024-03-29",
     "latestCalendarDate": "2024-03-29",
     "tableCount": 14,
-    "totalRecords": 566,
+    "totalRecords": 2045,
     "qualityIssueCount": 0,
-    "stockCount": 5,
-    "barStockCount": 5,
+    "stockCount": 30,
+    "barStockCount": 30,
     "barTradeDayCount": 58,
-    "expectedBarCount": 290,
-    "actualBarCount": 290,
+    "expectedBarCount": 1740,
+    "actualBarCount": 1740,
     "missingBarCount": 0,
     "coverageRate": 1.0
   },
   "coverage": {
     "startDate": "2024-01-02",
     "endDate": "2024-03-29",
-    "stockCount": 5,
-    "barStockCount": 5,
+    "stockCount": 30,
+    "barStockCount": 30,
     "calendarTradeDayCount": 58,
     "barTradeDayCount": 58,
-    "expectedBarCount": 290,
-    "actualBarCount": 290,
+    "expectedBarCount": 1740,
+    "actualBarCount": 1740,
     "missingBarCount": 0,
     "coverageRate": 1.0,
     "missingByDate": [],
@@ -37,7 +37,7 @@
       "source": "BaoStock",
       "status": "正常",
       "latestDate": "--",
-      "recordCount": 5
+      "recordCount": 30
     },
     {
       "table": "trade_calendar",
@@ -53,7 +53,7 @@
       "source": "BaoStock",
       "status": "正常",
       "latestDate": "2024-03-29",
-      "recordCount": 290
+      "recordCount": 1740
     },
     {
       "table": "limit_price",
@@ -77,7 +77,7 @@
       "source": "本地生成",
       "status": "正常",
       "latestDate": "2024-03-29",
-      "recordCount": 25
+      "recordCount": 30
     },
     {
       "table": "factor_value",
@@ -85,7 +85,7 @@
       "source": "本地生成",
       "status": "正常",
       "latestDate": "2024-03-29",
-      "recordCount": 100
+      "recordCount": 120
     },
     {
       "table": "signal",
@@ -101,23 +101,23 @@
       "source": "--",
       "status": "正常",
       "latestDate": "2024-03-29",
-      "recordCount": 2
+      "recordCount": 1
     },
     {
       "table": "simulation_order",
       "name": "simulation_order",
       "source": "--",
-      "status": "正常",
-      "latestDate": "2024-03-29",
-      "recordCount": 8
+      "status": "待同步",
+      "latestDate": "--",
+      "recordCount": 0
     },
     {
       "table": "simulation_fill",
       "name": "simulation_fill",
       "source": "--",
-      "status": "正常",
-      "latestDate": "2024-03-29",
-      "recordCount": 8
+      "status": "待同步",
+      "latestDate": "--",
+      "recordCount": 0
     },
     {
       "table": "simulation_position",
@@ -125,7 +125,7 @@
       "source": "--",
       "status": "正常",
       "latestDate": "2024-03-29",
-      "recordCount": 8
+      "recordCount": 5
     },
     {
       "table": "simulation_equity_curve",
@@ -133,7 +133,7 @@
       "source": "--",
       "status": "正常",
       "latestDate": "2024-03-29",
-      "recordCount": 6
+      "recordCount": 1
     },
     {
       "table": "pipeline_run",
@@ -141,7 +141,7 @@
       "source": "--",
       "status": "正常",
       "latestDate": "2024-03-29",
-      "recordCount": 2
+      "recordCount": 6
     }
   ],
   "qualityIssues": []
