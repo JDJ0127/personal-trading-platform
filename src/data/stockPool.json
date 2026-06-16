@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "tradeDate": "2024-03-29",
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "blocked": 0,
+    "passRate": 1.0
+  },
+  "filters": [],
+  "stocks": [
+    {
+      "tsCode": "000001.SZ",
+      "name": "平安银行",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 12049,
+      "close": 8.83268668,
+      "amount": 917332315.96,
+      "avgAmount": 1547941935.5475001
+    },
+    {
+      "tsCode": "300308.SZ",
+      "name": "中际旭创",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 4371,
+      "close": 111.49248184,
+      "amount": 2590950115.53,
+      "avgAmount": 5407059656.540999
+    },
+    {
+      "tsCode": "300750.SZ",
+      "name": "宁德时代",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 2118,
+      "close": 177.66610768,
+      "amount": 3154024728.73,
+      "avgAmount": 5348375635.111499
+    },
+    {
+      "tsCode": "600030.SH",
+      "name": "中信证券",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 7753,
+      "close": 17.9352768,
+      "amount": 1661488228.28,
+      "avgAmount": 1611944082.4964998
+    },
+    {
+      "tsCode": "600036.SH",
+      "name": "招商银行",
+      "industry": "股票",
+      "isPass": true,
+      "filterReasons": [],
+      "listedDays": 8025,
+      "close": 28.378665,
+      "amount": 1663236764.05,
+      "avgAmount": 1965262128.9595
+    }
+  ]
+}

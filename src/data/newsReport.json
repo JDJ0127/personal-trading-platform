@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-16T18:05:45",
+  "summary": {
+    "eventCount": 3,
+    "positiveCount": 2,
+    "negativeCount": 1,
+    "highImportanceCount": 1
+  },
+  "events": [
+    {
+      "eventId": "sample-news-1",
+      "time": "09:20",
+      "source": "公开政策源",
+      "title": "新型基础设施政策延续，算力和数据中心建设提速",
+      "eventType": "policy/news",
+      "sentiment": "positive",
+      "importance": 82,
+      "sector": "算力、数据中心",
+      "passCount": 0,
+      "reason": "命中关键词：算力、数据中心"
+    },
+    {
+      "eventId": "sample-news-2",
+      "time": "10:35",
+      "source": "财经快讯",
+      "title": "半导体国产替代订单预期改善",
+      "eventType": "policy/news",
+      "sentiment": "positive",
+      "importance": 76,
+      "sector": "半导体设备",
+      "passCount": 0,
+      "reason": "命中关键词：半导体、国产替代"
+    },
+    {
+      "eventId": "sample-news-3",
+      "time": "13:40",
+      "source": "交易所公告",
+      "title": "部分高位主题公司披露减持计划",
+      "eventType": "policy/news",
+      "sentiment": "negative",
+      "importance": 68,
+      "sector": "高位主题",
+      "passCount": 0,
+      "reason": "命中关键词：减持"
+    }
+  ]
+}

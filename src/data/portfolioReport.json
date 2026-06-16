@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-16T16:29:21",
+  "tradeDate": "2026-06-08",
+  "account": {
+    "initialCash": 500000.0,
+    "totalAsset": 495982.74,
+    "cash": 443982.74,
+    "marketValue": 52000.0,
+    "dailyReturn": -0.003639,
+    "cumulativeReturn": -0.008035,
+    "currentDrawdown": 0.008035,
+    "maxDrawdown": 0.008035,
+    "totalWeight": 0.104842,
+    "positionCount": 1
+  },
+  "positions": [
+    {
+      "tsCode": "300308.SZ",
+      "name": "中际旭创",
+      "industry": "创业板",
+      "quantity": 500,
+      "availableQuantity": 500,
+      "costPrice": 109.283,
+      "marketPrice": 104.0,
+      "marketValue": 52000.0,
+      "weight": 0.104842,
+      "unrealizedPnl": -2641.5,
+      "unrealizedPnlPct": -0.048342,
+      "holdingDays": 2,
+      "stopPrice": 100.5404,
+      "atrVolatility": 0.034176
+    }
+  ],
+  "industryExposure": [
+    {
+      "industry": "现金",
+      "weight": 0.895158,
+      "count": 0
+    },
+    {
+      "industry": "创业板",
+      "weight": 0.104842,
+      "count": 1
+    }
+  ]
+}

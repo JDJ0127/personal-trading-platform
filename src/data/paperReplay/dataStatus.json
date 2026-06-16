@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-16T20:57:01",
+  "database": "data/baostock_frontend.sqlite",
+  "summary": {
+    "latestTradeDate": "2024-03-29",
+    "latestCalendarDate": "2024-03-29",
+    "tableCount": 14,
+    "totalRecords": 566,
+    "qualityIssueCount": 0,
+    "stockCount": 5,
+    "barStockCount": 5,
+    "barTradeDayCount": 58,
+    "expectedBarCount": 290,
+    "actualBarCount": 290,
+    "missingBarCount": 0,
+    "coverageRate": 1.0
+  },
+  "coverage": {
+    "startDate": "2024-01-02",
+    "endDate": "2024-03-29",
+    "stockCount": 5,
+    "barStockCount": 5,
+    "calendarTradeDayCount": 58,
+    "barTradeDayCount": 58,
+    "expectedBarCount": 290,
+    "actualBarCount": 290,
+    "missingBarCount": 0,
+    "coverageRate": 1.0,
+    "missingByDate": [],
+    "missingByStock": []
+  },
+  "tables": [
+    {
+      "table": "stock_basic",
+      "name": "股票基础信息",
+      "source": "Replay",
+      "status": "正常",
+      "latestDate": "--",
+      "recordCount": 5
+    },
+    {
+      "table": "trade_calendar",
+      "name": "交易日历",
+      "source": "Replay",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 89
+    },
+    {
+      "table": "daily_bar",
+      "name": "日线行情",
+      "source": "Replay",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 290
+    },
+    {
+      "table": "limit_price",
+      "name": "涨跌停价格",
+      "source": "Replay",
+      "status": "待同步",
+      "latestDate": "--",
+      "recordCount": 0
+    },
+    {
+      "table": "suspension",
+      "name": "停复牌",
+      "source": "Replay",
+      "status": "待同步",
+      "latestDate": "--",
+      "recordCount": 0
+    },
+    {
+      "table": "stock_pool",
+      "name": "股票池",
+      "source": "本地生成",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 25
+    },
+    {
+      "table": "factor_value",
+      "name": "因子值",
+      "source": "本地生成",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 100
+    },
+    {
+      "table": "signal",
+      "name": "策略信号",
+      "source": "本地生成",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 23
+    },
+    {
+      "table": "simulation_account",
+      "name": "simulation_account",
+      "source": "--",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 2
+    },
+    {
+      "table": "simulation_order",
+      "name": "simulation_order",
+      "source": "--",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 8
+    },
+    {
+      "table": "simulation_fill",
+      "name": "simulation_fill",
+      "source": "--",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 8
+    },
+    {
+      "table": "simulation_position",
+      "name": "simulation_position",
+      "source": "--",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 8
+    },
+    {
+      "table": "simulation_equity_curve",
+      "name": "simulation_equity_curve",
+      "source": "--",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 6
+    },
+    {
+      "table": "pipeline_run",
+      "name": "pipeline_run",
+      "source": "--",
+      "status": "正常",
+      "latestDate": "2024-03-29",
+      "recordCount": 2
+    }
+  ],
+  "qualityIssues": []
+}

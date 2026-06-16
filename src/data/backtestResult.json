@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-16T16:29:21",
+  "strategy": {
+    "name": "simple_trend_v0",
+    "startedAt": "2026-06-16T16:29:21",
+    "endedAt": "2026-06-16T16:29:21"
+  },
+  "parameters": {
+    "initialCash": 500000.0,
+    "maxDrawdownLimit": 0.15,
+    "maxPositions": 5,
+    "minPositionWeight": 0.1,
+    "maxPositionWeight": 0.2,
+    "maxPortfolioWeight": 0.6,
+    "lotSize": 100,
+    "commissionRate": 0.00025,
+    "minCommission": 5.0,
+    "stampTaxRate": 0.0005,
+    "transferFeeRate": 1e-05,
+    "slippageBps": 5.0
+  },
+  "metrics": {
+    "initialCash": 500000.0,
+    "finalAsset": 495982.74,
+    "cumulativeReturn": -0.008035,
+    "annualizedReturn": -0.334073,
+    "maxDrawdown": 0.008035,
+    "sharpeRatio": -11.5053,
+    "calmarRatio": -41.5797,
+    "winRate": 0.0,
+    "orderCount": 3,
+    "fillCount": 3,
+    "totalFee": 72.49,
+    "turnover": 169567.93,
+    "tradingCostRatio": 0.000428,
+    "averageTradePnl": -1375.76,
+    "profitLossRatio": null,
+    "maxConsecutiveLosses": 1
+  },
+  "cards": [
+    {
+      "label": "累计收益",
+      "value": "-0.80%",
+      "tone": "down"
+    },
+    {
+      "label": "年化收益",
+      "value": "-33.41%",
+      "tone": "down"
+    },
+    {
+      "label": "最大回撤",
+      "value": "0.80%",
+      "tone": "down"
+    },
+    {
+      "label": "夏普比率",
+      "value": "-11.51",
+      "tone": "flat"
+    },
+    {
+      "label": "卡玛比率",
+      "value": "-41.58",
+      "tone": "flat"
+    },
+    {
+      "label": "胜率",
+      "value": "0.00%",
+      "tone": "flat"
+    },
+    {
+      "label": "盈亏比",
+      "value": "--",
+      "tone": "flat"
+    },
+    {
+      "label": "交易成本占比",
+      "value": "0.04%",
+      "tone": "flat"
+    },
+    {
+      "label": "订单/成交",
+      "value": "3/3",
+      "tone": "flat"
+    }
+  ],
+  "equityCurve": [
+    {
+      "date": "2026-06-01",
+      "strategyNetValue": 1.0,
+      "totalAsset": 500000.0,
+      "cash": 500000.0,
+      "marketValue": 0,
+      "dailyReturn": 0.0,
+      "cumulativeReturn": 0.0,
+      "positionCount": 0,
+      "totalWeight": 0.0
+    },
+    {
+      "date": "2026-06-02",
+      "strategyNetValue": 1.0,
+      "totalAsset": 500000.0,
+      "cash": 500000.0,
+      "marketValue": 0,
+      "dailyReturn": 0.0,
+      "cumulativeReturn": 0.0,
+      "positionCount": 0,
+      "totalWeight": 0.0
+    },
+    {
+      "date": "2026-06-03",
+      "strategyNetValue": 1.0,
+      "totalAsset": 500000.0,
+      "cash": 500000.0,
+      "marketValue": 0,
+      "dailyReturn": 0.0,
+      "cumulativeReturn": 0.0,
+      "positionCount": 0,
+      "totalWeight": 0.0
+    },
+    {
+      "date": "2026-06-04",
+      "strategyNetValue": 1.0,
+      "totalAsset": 500000.0,
+      "cash": 500000.0,
+      "marketValue": 0,
+      "dailyReturn": 0.0,
+      "cumulativeReturn": 0.0,
+      "positionCount": 0,
+      "totalWeight": 0.0
+    },
+    {
+      "date": "2026-06-05",
+      "strategyNetValue": 0.995589,
+      "totalAsset": 497794.33,
+      "cash": 387214.33,
+      "marketValue": 110580.0,
+      "dailyReturn": -0.004411,
+      "cumulativeReturn": -0.004411,
+      "positionCount": 2,
+      "totalWeight": 0.22214
+    },
+    {
+      "date": "2026-06-08",
+      "strategyNetValue": 0.991965,
+      "totalAsset": 495982.74,
+      "cash": 443982.74,
+      "marketValue": 52000.0,
+      "dailyReturn": -0.003639,
+      "cumulativeReturn": -0.008035,
+      "positionCount": 1,
+      "totalWeight": 0.104842
+    }
+  ],
+  "drawdownCurve": [
+    {
+      "date": "2026-06-01",
+      "drawdown": 0.0
+    },
+    {
+      "date": "2026-06-02",
+      "drawdown": 0.0
+    },
+    {
+      "date": "2026-06-03",
+      "drawdown": 0.0
+    },
+    {
+      "date": "2026-06-04",
+      "drawdown": 0.0
+    },
+    {
+      "date": "2026-06-05",
+      "drawdown": 0.004411
+    },
+    {
+      "date": "2026-06-08",
+      "drawdown": 0.008035
+    }
+  ],
+  "orders": [
+    {
+      "orderId": "9f700d6e97cf4893831d4171300bfdb9",
+      "tradeDate": "2026-06-05",
+      "tsCode": "300308.SZ",
+      "side": "buy",
+      "orderPrice": 109.2,
+      "orderQuantity": 500,
+      "filledQuantity": 500,
+      "avgFillPrice": 109.25,
+      "status": "filled",
+      "rejectReason": ""
+    },
+    {
+      "orderId": "33dc6e35827849218e6577c8eb00466c",
+      "tradeDate": "2026-06-05",
+      "tsCode": "600030.SH",
+      "side": "buy",
+      "orderPrice": 20.75,
+      "orderQuantity": 2800,
+      "filledQuantity": 2800,
+      "avgFillPrice": 20.76,
+      "status": "filled",
+      "rejectReason": ""
+    },
+    {
+      "orderId": "c0a1eb80db4e466b84a1f1a61a6aef8d",
+      "tradeDate": "2026-06-08",
+      "tsCode": "600030.SH",
+      "side": "sell",
+      "orderPrice": 20.3,
+      "orderQuantity": 2800,
+      "filledQuantity": 2800,
+      "avgFillPrice": 20.29,
+      "status": "filled",
+      "rejectReason": ""
+    }
+  ],
+  "fills": [
+    {
+      "tradeDate": "2026-06-05",
+      "tsCode": "300308.SZ",
+      "side": "buy",
+      "quantity": 500,
+      "price": 109.25,
+      "commission": 13.66,
+      "stampTax": 0.0,
+      "transferFee": 0.55,
+      "fee": 14.2
+    },
+    {
+      "tradeDate": "2026-06-05",
+      "tsCode": "600030.SH",
+      "side": "buy",
+      "quantity": 2800,
+      "price": 20.76,
+      "commission": 14.53,
+      "stampTax": 0.0,
+      "transferFee": 0.58,
+      "fee": 15.11
+    },
+    {
+      "tradeDate": "2026-06-08",
+      "tsCode": "600030.SH",
+      "side": "sell",
+      "quantity": 2800,
+      "price": 20.29,
+      "commission": 14.2,
+      "stampTax": 28.41,
+      "transferFee": 0.57,
+      "fee": 43.18
+    }
+  ],
+  "realizedPnls": [
+    -1375.76
+  ]
+}

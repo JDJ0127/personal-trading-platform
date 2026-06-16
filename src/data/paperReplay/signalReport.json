@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "tradeDate": "2024-03-29",
+  "summary": {
+    "signalCount": 5,
+    "buyCount": 4,
+    "watchCount": 1
+  },
+  "signals": [
+    {
+      "tsCode": "600036.SH",
+      "name": "招商银行",
+      "industry": "股票",
+      "signal": "buy",
+      "totalScore": 69.21,
+      "trendScore": 49.17,
+      "strengthScore": 100.0,
+      "volumeScore": 42.32,
+      "riskScore": 92.68,
+      "targetWeight": 0.1,
+      "reason": "趋势、强弱和量价评分满足买入观察阈值"
+    },
+    {
+      "tsCode": "300750.SZ",
+      "name": "宁德时代",
+      "industry": "股票",
+      "signal": "buy",
+      "totalScore": 68.08,
+      "trendScore": 56.24,
+      "strengthScore": 100.0,
+      "volumeScore": 29.49,
+      "riskScore": 87.47,
+      "targetWeight": 0.1,
+      "reason": "趋势、强弱和量价评分满足买入观察阈值"
+    },
+    {
+      "tsCode": "000001.SZ",
+      "name": "平安银行",
+      "industry": "股票",
+      "signal": "buy",
+      "totalScore": 67.48,
+      "trendScore": 50.63,
+      "strengthScore": 100.0,
+      "volumeScore": 29.63,
+      "riskScore": 94.18,
+      "targetWeight": 0.1,
+      "reason": "趋势、强弱和量价评分满足买入观察阈值"
+    },
+    {
+      "tsCode": "300308.SZ",
+      "name": "中际旭创",
+      "industry": "股票",
+      "signal": "buy",
+      "totalScore": 67.35,
+      "trendScore": 59.09,
+      "strengthScore": 100.0,
+      "volumeScore": 23.96,
+      "riskScore": 84.4,
+      "targetWeight": 0.1,
+      "reason": "趋势、强弱和量价评分满足买入观察阈值"
+    },
+    {
+      "tsCode": "600030.SH",
+      "name": "中信证券",
+      "industry": "股票",
+      "signal": "watch",
+      "totalScore": 50.93,
+      "trendScore": 45.51,
+      "strengthScore": 28.33,
+      "volumeScore": 51.54,
+      "riskScore": 88.09,
+      "targetWeight": 0.0,
+      "reason": "综合分进入观察区，等待趋势或量价确认"
+    }
+  ]
+}

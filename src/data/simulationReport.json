@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-16T18:05:44",
+  "tradeDate": "2024-03-29",
+  "account": {
+    "initialCash": 500000.0,
+    "maxPositions": 5,
+    "maxPortfolioWeight": 0.6,
+    "currentTotalAsset": 500000.0,
+    "currentCash": 500000.0,
+    "currentWeight": 0.0
+  },
+  "risk": {
+    "state": "Normal",
+    "allowedPositionWeight": 0.8,
+    "maxDrawdownLimit": 0.15,
+    "currentDrawdown": 0.0,
+    "actions": [
+      "允许按策略信号执行",
+      "保持组合上限约束",
+      "继续监控数据质量"
+    ]
+  },
+  "summary": {
+    "signalCount": 5,
+    "plannedOrderCount": 4,
+    "blockedOrderCount": 0,
+    "watchCount": 1
+  },
+  "orders": [
+    {
+      "tradeDate": "2024-03-29",
+      "tsCode": "600036.SH",
+      "side": "buy",
+      "targetWeight": 0.1,
+      "score": 69.2104,
+      "status": "planned",
+      "blockReason": "",
+      "orderQuantity": 1700,
+      "orderPrice": 28.2905325,
+      "estimatedAmount": 48093.91,
+      "upLimit": null,
+      "downLimit": null
+    },
+    {
+      "tradeDate": "2024-03-29",
+      "tsCode": "300750.SZ",
+      "side": "buy",
+      "targetWeight": 0.1,
+      "score": 68.0764,
+      "status": "planned",
+      "blockReason": "",
+      "orderQuantity": 200,
+      "orderPrice": 177.7969094,
+      "estimatedAmount": 35559.38,
+      "upLimit": null,
+      "downLimit": null
+    },
+    {
+      "tradeDate": "2024-03-29",
+      "tsCode": "000001.SZ",
+      "side": "buy",
+      "targetWeight": 0.1,
+      "score": 67.4847,
+      "status": "planned",
+      "blockReason": "",
+      "orderQuantity": 5600,
+      "orderPrice": 8.77391405,
+      "estimatedAmount": 49133.92,
+      "upLimit": null,
+      "downLimit": null
+    },
+    {
+      "tradeDate": "2024-03-29",
+      "tsCode": "300308.SZ",
+      "side": "buy",
+      "targetWeight": 0.1,
+      "score": 67.3533,
+      "status": "planned",
+      "blockReason": "",
+      "orderQuantity": 400,
+      "orderPrice": 109.0284809,
+      "estimatedAmount": 43611.39,
+      "upLimit": null,
+      "downLimit": null
+    },
+    {
+      "tradeDate": "2024-03-29",
+      "tsCode": "600030.SH",
+      "side": "hold",
+      "targetWeight": 0.0,
+      "score": 50.9344,
+      "status": "watch",
+      "blockReason": "观察信号不生成模拟委托",
+      "orderQuantity": 0,
+      "orderPrice": 18.01000712,
+      "estimatedAmount": 0.0,
+      "upLimit": null,
+      "downLimit": null
+    }
+  ],
+  "checks": [
+    "停牌无法交易",
+    "涨停无法买入",
+    "跌停无法卖出",
+    "买入按 100 股整数倍",
+    "按市场风控状态限制新增买入",
+    "按组合仓位上限限制新增买入",
+    "按配置计入滑点和手续费"
+  ]
+}

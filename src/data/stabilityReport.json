@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-16T16:29:21",
+  "strategy": "simple_trend_v0",
+  "period": {
+    "start": "2026-06-01",
+    "end": "2026-06-08",
+    "tradingDays": 6
+  },
+  "summary": {
+    "cumulativeReturn": -0.008035,
+    "maxDrawdown": 0.008035,
+    "winRate": 0.0,
+    "orderCount": 3,
+    "fillCount": 3,
+    "winningMonthCount": 0,
+    "losingMonthCount": 1,
+    "monthlyWinRate": 0.0,
+    "bestMonthReturn": -0.008035,
+    "worstMonthReturn": -0.008035,
+    "maxConsecutiveLosingMonths": 1
+  },
+  "yearlyReturns": [
+    {
+      "period": "2026",
+      "startAsset": 500000.0,
+      "endAsset": 495982.74,
+      "return": -0.008035,
+      "maxDrawdown": 0.008035,
+      "tradingDays": 6
+    }
+  ],
+  "monthlyReturns": [
+    {
+      "period": "2026-06",
+      "startAsset": 500000.0,
+      "endAsset": 495982.74,
+      "return": -0.008035,
+      "maxDrawdown": 0.008035,
+      "tradingDays": 6
+    }
+  ],
+  "checks": [
+    {
+      "name": "累计收益为正",
+      "passed": false
+    },
+    {
+      "name": "最大回撤低于 15%",
+      "passed": true
+    },
+    {
+      "name": "成交次数不少于 10 次",
+      "passed": false
+    },
+    {
+      "name": "月度胜率不低于 50%",
+      "passed": false
+    },
+    {
+      "name": "连续亏损月份不超过 3 个月",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-16T18:24:38",
+  "tradeDate": "2024-03-29",
+  "market": {
+    "score": 4,
+    "state": "偏强",
+    "maxWeight": 0.8,
+    "breadthUpPct": 80.0,
+    "upCount": 4,
+    "downCount": 1,
+    "newHighCount": 0,
+    "newLowCount": 1,
+    "trendPassPct": 60.0,
+    "checks": [
+      {
+        "name": "上涨股票占比 > 55%",
+        "passed": true
+      },
+      {
+        "name": "站上短期均线股票占比 > 50%",
+        "passed": true
+      },
+      {
+        "name": "短期新高数量 > 新低数量",
+        "passed": false
+      },
+      {
+        "name": "跌多涨少风险未触发",
+        "passed": true
+      },
+      {
+        "name": "可用行情数量 > 0",
+        "passed": true
+      }
+    ]
+  },
+  "risk": {
+    "state": "Normal",
+    "allowedPositionWeight": 0.8,
+    "maxDrawdownLimit": 0.15,
+    "currentDrawdown": 0.0,
+    "actions": [
+      "允许按策略信号执行",
+      "保持组合上限约束",
+      "继续监控数据质量"
+    ]
+  }
+}
