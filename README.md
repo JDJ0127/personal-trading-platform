@@ -94,6 +94,16 @@ REPLAY_RESET_ACCOUNT=1
 
 `check_all.sh` 会运行后端单元测试、前端构建和 CLI 冒烟检查。
 
+## 国内静态部署
+
+1.0 推荐将前端静态看板部署到腾讯云 CloudBase，后端继续本地生成 JSON 报告：
+
+```bash
+CLOUDBASE_ENV_ID=<your-env-id> npm run deploy:cloudbase
+```
+
+部署步骤见 `docs/cloudbase_deploy.md`。
+
 ## 常用脚本
 
 | 脚本 | 作用 |
@@ -105,6 +115,7 @@ REPLAY_RESET_ACCOUNT=1
 | `scripts/export_reports.sh` | 从数据库重新导出前端 JSON |
 | `scripts/start_frontend.sh` | 启动 Vite 前端 |
 | `scripts/build_frontend.sh` | 构建前端 |
+| `scripts/deploy_cloudbase.sh` | 构建并上传 `dist` 到腾讯云 CloudBase 静态托管 |
 | `scripts/check_all.sh` | 测试和构建总检查 |
 
 ## 真实数据 Smoke
