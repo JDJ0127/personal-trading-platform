@@ -1,25 +1,25 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-17T01:42:42",
-  "tradeDate": "2024-03-29",
+  "generatedAt": "2026-06-17T08:48:49",
+  "tradeDate": "2026-06-16",
   "market": {
-    "score": 4,
-    "state": "偏强",
-    "maxWeight": 0.8,
-    "breadthUpPct": 63.33,
-    "upCount": 19,
-    "downCount": 11,
-    "newHighCount": 5,
-    "newLowCount": 6,
-    "trendPassPct": 53.33,
+    "score": 1,
+    "state": "弱势",
+    "maxWeight": 0.2,
+    "breadthUpPct": 20.0,
+    "upCount": 6,
+    "downCount": 24,
+    "newHighCount": 6,
+    "newLowCount": 15,
+    "trendPassPct": 33.33,
     "checks": [
       {
         "name": "上涨股票占比 > 55%",
-        "passed": true
+        "passed": false
       },
       {
         "name": "站上短期均线股票占比 > 50%",
-        "passed": true
+        "passed": false
       },
       {
         "name": "短期新高数量 > 新低数量",
@@ -27,7 +27,7 @@
       },
       {
         "name": "跌多涨少风险未触发",
-        "passed": true
+        "passed": false
       },
       {
         "name": "可用行情数量 > 0",
@@ -36,14 +36,14 @@
     ]
   },
   "risk": {
-    "state": "Normal",
-    "allowedPositionWeight": 0.8,
+    "state": "PauseBuy",
+    "allowedPositionWeight": 0.2,
     "maxDrawdownLimit": 0.15,
     "currentDrawdown": 0.0,
     "actions": [
-      "允许按策略信号执行",
-      "保持组合上限约束",
-      "继续监控数据质量"
+      "暂停新增买入",
+      "只允许处理卖出信号",
+      "等待市场评分恢复"
     ]
   }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "tradeDate": "2024-03-29",
+  "tradeDate": "2026-06-16",
   "summary": {
     "total": 30,
     "passed": 30,
@@ -15,10 +15,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 12049,
-      "close": 8.83268668,
-      "amount": 917332315.96,
-      "avgAmount": 1547941935.5475001
+      "listedDays": 12858,
+      "close": 10.94,
+      "amount": 1034554249.38,
+      "avgAmount": 1176370131.138
     },
     {
       "tsCode": "000333.SZ",
@@ -26,10 +26,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 3845,
-      "close": 58.31587008,
-      "amount": 1638381689.95,
-      "avgAmount": 2132769985.94
+      "listedDays": 4654,
+      "close": 78.96,
+      "amount": 3291473114.58,
+      "avgAmount": 2624122159.299
     },
     {
       "tsCode": "000651.SZ",
@@ -37,10 +37,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 9993,
-      "close": 33.94410638,
-      "amount": 926421709.71,
-      "avgAmount": 1575215473.8259997
+      "listedDays": 10802,
+      "close": 37.29,
+      "amount": 1763657295.34,
+      "avgAmount": 1598233071.0885003
     },
     {
       "tsCode": "000858.SZ",
@@ -48,10 +48,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 9468,
-      "close": 138.21288201,
-      "amount": 1358438656.59,
-      "avgAmount": 2789113016.952
+      "listedDays": 10277,
+      "close": 78.33,
+      "amount": 1708709321.74,
+      "avgAmount": 2508585467.8235
     },
     {
       "tsCode": "002415.SZ",
@@ -59,10 +59,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 5054,
-      "close": 29.50818288,
-      "amount": 951453044.88,
-      "avgAmount": 1258525167.7775
+      "listedDays": 5863,
+      "close": 32.2,
+      "amount": 3343731925.22,
+      "avgAmount": 1963135322.2610004
     },
     {
       "tsCode": "002475.SZ",
@@ -70,10 +70,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 4944,
-      "close": 28.94111637,
-      "amount": 2013985448.91,
-      "avgAmount": 3414248036.0464997
+      "listedDays": 5753,
+      "close": 67.26,
+      "amount": 10757497506.49,
+      "avgAmount": 13208367269.716496
     },
     {
       "tsCode": "002594.SZ",
@@ -81,10 +81,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 4656,
-      "close": 66.07592706,
-      "amount": 2873380485.75,
-      "avgAmount": 3050753504.0645
+      "listedDays": 5465,
+      "close": 89.64,
+      "amount": 3017362612.74,
+      "avgAmount": 3446599801.1545
     },
     {
       "tsCode": "300059.SZ",
@@ -92,10 +92,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 5124,
-      "close": 12.74706279,
-      "amount": 1467113689.79,
-      "avgAmount": 2634593038.2475004
+      "listedDays": 5933,
+      "close": 19.12,
+      "amount": 8749339270.17,
+      "avgAmount": 6722186172.353
     },
     {
       "tsCode": "300308.SZ",
@@ -103,10 +103,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 4371,
-      "close": 111.49248184,
-      "amount": 2590950115.53,
-      "avgAmount": 5407059656.540999
+      "listedDays": 5180,
+      "close": 1248.09,
+      "amount": 29091725555.52,
+      "avgAmount": 33401389840.527496
     },
     {
       "tsCode": "300750.SZ",
@@ -114,10 +114,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 2118,
-      "close": 177.66610768,
-      "amount": 3154024728.73,
-      "avgAmount": 5348375635.111499
+      "listedDays": 2927,
+      "close": 403.53,
+      "amount": 14107808734.81,
+      "avgAmount": 14471332320.055002
     },
     {
       "tsCode": "300760.SZ",
@@ -125,10 +125,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 1991,
-      "close": 265.38413064,
-      "amount": 566899193.82,
-      "avgAmount": 982627417.0459998
+      "listedDays": 2800,
+      "close": 142.9,
+      "amount": 991774773.89,
+      "avgAmount": 1367945389.1485
     },
     {
       "tsCode": "600030.SH",
@@ -136,10 +136,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 7753,
-      "close": 17.9352768,
-      "amount": 1661488228.28,
-      "avgAmount": 1611944082.4964998
+      "listedDays": 8562,
+      "close": 27.25,
+      "amount": 5969042187.72,
+      "avgAmount": 4825471584.391999
     },
     {
       "tsCode": "600036.SH",
@@ -147,10 +147,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 8025,
-      "close": 28.378665,
-      "amount": 1663236764.05,
-      "avgAmount": 1965262128.9595
+      "listedDays": 8834,
+      "close": 38.57,
+      "amount": 3048039102.83,
+      "avgAmount": 3325892718.2939997
     },
     {
       "tsCode": "600276.SH",
@@ -158,10 +158,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 8563,
-      "close": 45.39372008,
-      "amount": 857879350.53,
-      "avgAmount": 1455916106.1804998
+      "listedDays": 9372,
+      "close": 47.35,
+      "amount": 2385274212.63,
+      "avgAmount": 3851755178.601001
     },
     {
       "tsCode": "600309.SH",
@@ -169,10 +169,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 8484,
-      "close": 78.3098388,
-      "amount": 1186856152.19,
-      "avgAmount": 980629857.165
+      "listedDays": 9293,
+      "close": 70.07,
+      "amount": 3398996351.53,
+      "avgAmount": 2555466225.3375
     },
     {
       "tsCode": "600406.SH",
@@ -180,10 +180,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 7470,
-      "close": 23.07719212,
-      "amount": 237188066.01,
-      "avgAmount": 586416388.3325002
+      "listedDays": 8279,
+      "close": 23.54,
+      "amount": 1426824275.08,
+      "avgAmount": 1934313838.796
     },
     {
       "tsCode": "600519.SH",
@@ -191,10 +191,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 8250,
-      "close": 1584.1022902,
-      "amount": 2290584417.12,
-      "avgAmount": 4191979334.319499
+      "listedDays": 9059,
+      "close": 1255.67,
+      "amount": 4399957625.46,
+      "avgAmount": 5671790211.2630005
     },
     {
       "tsCode": "600887.SH",
@@ -202,10 +202,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 10244,
-      "close": 24.3703152,
-      "amount": 770574678.99,
-      "avgAmount": 1092651368.1685
+      "listedDays": 11053,
+      "close": 24.8,
+      "amount": 1820681156.71,
+      "avgAmount": 1465026414.8355002
     },
     {
       "tsCode": "601012.SH",
@@ -213,10 +213,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 4370,
-      "close": 19.27609461,
-      "amount": 1420515919.97,
-      "avgAmount": 2544919618.2020006
+      "listedDays": 5179,
+      "close": 13.3,
+      "amount": 1591257808.68,
+      "avgAmount": 2123757213.426
     },
     {
       "tsCode": "601138.SH",
@@ -224,10 +224,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 2121,
-      "close": 21.60834291,
-      "amount": 3846707806.55,
-      "avgAmount": 7398059103.238501
+      "listedDays": 2930,
+      "close": 72.9,
+      "amount": 12770877347.59,
+      "avgAmount": 17971895208.0285
     },
     {
       "tsCode": "601288.SH",
@@ -235,10 +235,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 5006,
-      "close": 3.70579725,
-      "amount": 1539840258.52,
-      "avgAmount": 1504941289.482
+      "listedDays": 5815,
+      "close": 6.61,
+      "amount": 1810969950.64,
+      "avgAmount": 2170198955.5950003
     },
     {
       "tsCode": "601318.SH",
@@ -246,10 +246,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 6238,
-      "close": 35.84644294,
-      "amount": 1370420386.58,
-      "avgAmount": 2057643328.2270005
+      "listedDays": 7047,
+      "close": 52.99,
+      "amount": 4325837393.05,
+      "avgAmount": 4449872054.994001
     },
     {
       "tsCode": "601398.SH",
@@ -257,10 +257,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 6363,
-      "close": 4.62180576,
-      "amount": 1217142787.08,
-      "avgAmount": 1481303182.4255002
+      "listedDays": 7172,
+      "close": 7.42,
+      "amount": 2766934367.16,
+      "avgAmount": 2426447670.2409997
     },
     {
       "tsCode": "601668.SH",
@@ -268,10 +268,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 5357,
-      "close": 4.76005268,
-      "amount": 782803636.84,
-      "avgAmount": 806997161.9995
+      "listedDays": 6166,
+      "close": 4.71,
+      "amount": 690273805.62,
+      "avgAmount": 847344407.6359998
     },
     {
       "tsCode": "601857.SH",
@@ -279,10 +279,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 5989,
-      "close": 8.89594212,
-      "amount": 2568975097.59,
-      "avgAmount": 1744444207.5965
+      "listedDays": 6798,
+      "close": 9.95,
+      "amount": 1662767858.18,
+      "avgAmount": 2000256725.7844996
     },
     {
       "tsCode": "601888.SH",
@@ -290,10 +290,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 5279,
-      "close": 81.73062478,
-      "amount": 1189844686.72,
-      "avgAmount": 1759960826.2905
+      "listedDays": 6088,
+      "close": 58.4,
+      "amount": 1973691150.21,
+      "avgAmount": 2867653490.9469995
     },
     {
       "tsCode": "601899.SH",
@@ -301,10 +301,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 5817,
-      "close": 16.15900764,
-      "amount": 3491214364.75,
-      "avgAmount": 2837794357.5755005
+      "listedDays": 6626,
+      "close": 30.29,
+      "amount": 8968397191.93,
+      "avgAmount": 9514623493.073
     },
     {
       "tsCode": "601988.SH",
@@ -312,10 +312,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 6477,
-      "close": 3.9282804,
-      "amount": 745651755.68,
-      "avgAmount": 761074630.457
+      "listedDays": 7286,
+      "close": 6.04,
+      "amount": 1358536175.02,
+      "avgAmount": 1738599231.2319999
     },
     {
       "tsCode": "603259.SH",
@@ -323,10 +323,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 2152,
-      "close": 43.26202434,
-      "amount": 3445841853.06,
-      "avgAmount": 5956996134.8585005
+      "listedDays": 2961,
+      "close": 98.16,
+      "amount": 2679769120.22,
+      "avgAmount": 4304737665.532
     },
     {
       "tsCode": "688981.SH",
@@ -334,10 +334,10 @@
       "industry": "股票",
       "isPass": true,
       "filterReasons": [],
-      "listedDays": 1352,
-      "close": 43.66,
-      "amount": 717917544.23,
-      "avgAmount": 992022841.5479997
+      "listedDays": 2161,
+      "close": 130.14,
+      "amount": 9738547520.65,
+      "avgAmount": 16097143202.382498
     }
   ]
 }

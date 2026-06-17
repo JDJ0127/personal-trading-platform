@@ -1,30 +1,30 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-17T01:42:42",
+  "generatedAt": "2026-06-17T08:48:49",
   "database": "data/real_smoke/baostock_smoke.sqlite",
   "summary": {
-    "latestTradeDate": "2024-03-29",
-    "latestCalendarDate": "2024-03-29",
+    "latestTradeDate": "2026-06-16",
+    "latestCalendarDate": "2026-06-16",
     "tableCount": 14,
-    "totalRecords": 2045,
+    "totalRecords": 5599,
     "qualityIssueCount": 0,
     "stockCount": 30,
     "barStockCount": 30,
-    "barTradeDayCount": 58,
-    "expectedBarCount": 1740,
-    "actualBarCount": 1740,
+    "barTradeDayCount": 165,
+    "expectedBarCount": 4950,
+    "actualBarCount": 4950,
     "missingBarCount": 0,
     "coverageRate": 1.0
   },
   "coverage": {
     "startDate": "2024-01-02",
-    "endDate": "2024-03-29",
+    "endDate": "2026-06-16",
     "stockCount": 30,
     "barStockCount": 30,
-    "calendarTradeDayCount": 58,
-    "barTradeDayCount": 58,
-    "expectedBarCount": 1740,
-    "actualBarCount": 1740,
+    "calendarTradeDayCount": 165,
+    "barTradeDayCount": 165,
+    "expectedBarCount": 4950,
+    "actualBarCount": 4950,
     "missingBarCount": 0,
     "coverageRate": 1.0,
     "missingByDate": [],
@@ -44,16 +44,16 @@
       "name": "交易日历",
       "source": "BaoStock",
       "status": "正常",
-      "latestDate": "2024-03-29",
-      "recordCount": 89
+      "latestDate": "2026-06-16",
+      "recordCount": 256
     },
     {
       "table": "daily_bar",
       "name": "日线行情",
       "source": "BaoStock",
       "status": "正常",
-      "latestDate": "2024-03-29",
-      "recordCount": 1740
+      "latestDate": "2026-06-16",
+      "recordCount": 4950
     },
     {
       "table": "limit_price",
@@ -76,31 +76,31 @@
       "name": "股票池",
       "source": "本地生成",
       "status": "正常",
-      "latestDate": "2024-03-29",
-      "recordCount": 30
+      "latestDate": "2026-06-16",
+      "recordCount": 60
     },
     {
       "table": "factor_value",
       "name": "因子值",
       "source": "本地生成",
       "status": "正常",
-      "latestDate": "2024-03-29",
-      "recordCount": 120
+      "latestDate": "2026-06-16",
+      "recordCount": 240
     },
     {
       "table": "signal",
       "name": "策略信号",
       "source": "本地生成",
       "status": "正常",
-      "latestDate": "2024-03-29",
-      "recordCount": 23
+      "latestDate": "2026-06-16",
+      "recordCount": 47
     },
     {
       "table": "simulation_account",
       "name": "simulation_account",
       "source": "--",
       "status": "正常",
-      "latestDate": "2024-03-29",
+      "latestDate": "2026-06-16",
       "recordCount": 1
     },
     {
@@ -124,24 +124,24 @@
       "name": "simulation_position",
       "source": "--",
       "status": "正常",
-      "latestDate": "2024-03-29",
-      "recordCount": 5
+      "latestDate": "2026-06-16",
+      "recordCount": 4
     },
     {
       "table": "simulation_equity_curve",
       "name": "simulation_equity_curve",
       "source": "--",
       "status": "正常",
-      "latestDate": "2024-03-29",
-      "recordCount": 1
+      "latestDate": "2026-06-16",
+      "recordCount": 2
     },
     {
       "table": "pipeline_run",
       "name": "pipeline_run",
       "source": "--",
       "status": "正常",
-      "latestDate": "2024-03-29",
-      "recordCount": 6
+      "latestDate": "2026-06-16",
+      "recordCount": 9
     }
   ],
   "qualityIssues": []
