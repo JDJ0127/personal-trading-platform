@@ -1,87 +1,87 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-17T08:48:49",
+  "generatedAt": "2026-07-03T23:07:12",
   "account": {
     "accountId": "paper-real-smoke",
     "accountName": "真实数据烟测账户",
     "mode": "paper",
     "strategyName": "manual_signal",
     "initialCash": 500000.0,
-    "totalAsset": 1012644.76,
+    "totalAsset": 959327.76,
     "cash": 305869.76,
-    "marketValue": 706775.0,
-    "cumulativeReturn": 1.02529,
-    "maxDrawdown": 0.0,
+    "marketValue": 653458.0,
+    "cumulativeReturn": 0.918656,
+    "maxDrawdown": 0.052651,
     "positionCount": 4,
-    "lastTradeDate": "2026-06-16",
+    "lastTradeDate": "2026-07-02",
     "status": "active",
     "createdAt": "2026-06-16T17:31:24",
-    "updatedAt": "2026-06-17T08:48:49"
+    "updatedAt": "2026-07-03T23:07:12"
   },
   "positions": [
     {
-      "tradeDate": "2026-06-16",
+      "tradeDate": "2026-07-02",
       "tsCode": "300308.SZ",
       "name": "中际旭创",
       "industry": "股票",
       "quantity": 400,
       "availableQuantity": 400,
       "costPrice": 109.1114,
-      "marketPrice": 1248.09,
-      "marketValue": 499236.0,
-      "weight": 0.493002,
-      "unrealizedPnl": 455591.46,
-      "unrealizedPnlPct": 10.438681,
+      "marketPrice": 1143.0,
+      "marketValue": 457200.0,
+      "weight": 0.476584,
+      "unrealizedPnl": 413555.46,
+      "unrealizedPnlPct": 9.475537,
       "stopPrice": 100.3824,
-      "holdingDays": 7
+      "holdingDays": 10
     },
     {
-      "tradeDate": "2026-06-16",
+      "tradeDate": "2026-07-02",
       "tsCode": "300750.SZ",
       "name": "宁德时代",
       "industry": "股票",
       "quantity": 200,
       "availableQuantity": 200,
       "costPrice": 177.9321,
-      "marketPrice": 403.53,
-      "marketValue": 80706.0,
-      "weight": 0.079698,
-      "unrealizedPnl": 45119.59,
-      "unrealizedPnlPct": 1.267888,
+      "marketPrice": 382.35,
+      "marketValue": 76470.0,
+      "weight": 0.079712,
+      "unrealizedPnl": 40883.59,
+      "unrealizedPnlPct": 1.148854,
       "stopPrice": 163.6975,
-      "holdingDays": 7
+      "holdingDays": 10
     },
     {
-      "tradeDate": "2026-06-16",
+      "tradeDate": "2026-07-02",
       "tsCode": "600036.SH",
       "name": "招商银行",
       "industry": "股票",
       "quantity": 1700,
       "availableQuantity": 1700,
       "costPrice": 28.312,
-      "marketPrice": 38.57,
-      "marketValue": 65569.0,
-      "weight": 0.06475,
-      "unrealizedPnl": 17438.54,
-      "unrealizedPnlPct": 0.362318,
+      "marketPrice": 36.6,
+      "marketValue": 62220.0,
+      "weight": 0.064858,
+      "unrealizedPnl": 14089.54,
+      "unrealizedPnlPct": 0.292736,
       "stopPrice": 26.0471,
-      "holdingDays": 7
+      "holdingDays": 10
     },
     {
-      "tradeDate": "2026-06-16",
+      "tradeDate": "2026-07-02",
       "tsCode": "000001.SZ",
       "name": "平安银行",
       "industry": "股票",
       "quantity": 5600,
       "availableQuantity": 5600,
       "costPrice": 8.7806,
-      "marketPrice": 10.94,
-      "marketValue": 61264.0,
-      "weight": 0.060499,
-      "unrealizedPnl": 12092.73,
-      "unrealizedPnlPct": 0.245931,
+      "marketPrice": 10.28,
+      "marketValue": 57568.0,
+      "weight": 0.060009,
+      "unrealizedPnl": 8396.73,
+      "unrealizedPnlPct": 0.170765,
       "stopPrice": 8.0781,
-      "holdingDays": 7
+      "holdingDays": 10
     }
   ],
   "equityCurve": [
@@ -108,6 +108,18 @@
       "maxDrawdown": 0.0,
       "positionCount": 4,
       "totalWeight": 0.69795
+    },
+    {
+      "tradeDate": "2026-07-02",
+      "totalAsset": 959327.76,
+      "cash": 305869.76,
+      "marketValue": 653458.0,
+      "dailyReturn": -0.052651,
+      "cumulativeReturn": 0.918656,
+      "drawdown": 0.052651,
+      "maxDrawdown": 0.052651,
+      "positionCount": 4,
+      "totalWeight": 0.681162
     }
   ],
   "orders": [],
@@ -116,6 +128,6 @@
     "orderCount": 0,
     "fillCount": 0,
     "positionCount": 4,
-    "equityPointCount": 2
+    "equityPointCount": 3
   }
 }

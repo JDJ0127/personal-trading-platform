@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-17T08:48:49",
-  "tradeDate": "2026-06-16",
+  "generatedAt": "2026-07-03T23:07:12",
+  "tradeDate": "2026-07-02",
   "market": {
     "score": 1,
     "state": "弱势",
     "maxWeight": 0.2,
-    "breadthUpPct": 20.0,
-    "upCount": 6,
-    "downCount": 24,
-    "newHighCount": 6,
-    "newLowCount": 15,
-    "trendPassPct": 33.33,
+    "breadthUpPct": 36.67,
+    "upCount": 11,
+    "downCount": 19,
+    "newHighCount": 7,
+    "newLowCount": 7,
+    "trendPassPct": 46.67,
     "checks": [
       {
         "name": "上涨股票占比 > 55%",
