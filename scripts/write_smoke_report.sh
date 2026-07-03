@@ -21,6 +21,7 @@ signals = load("signalReport.json")
 risk = load("marketRisk.json")
 account = load("simulationAccount.json")
 run_log = load("runLog.json")
+index_quotes = load("indexQuotes.json")
 
 tables = {item["table"]: item for item in status["tables"]}
 lines = [
@@ -44,6 +45,7 @@ lines = [
     f"- 总资产: {account['account']['totalAsset']}",
     f"- 持仓数: {account['summary']['positionCount']}",
     f"- 订单/成交: {account['summary']['orderCount']} / {account['summary']['fillCount']}",
+    f"- 指数数量: {len(index_quotes.get('quotes', []))}",
     "",
     "## Latest Run",
     "",

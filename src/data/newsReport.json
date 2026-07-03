@@ -1,6 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-03T23:07:12",
+  "tradeDate": "2026-07-02",
+  "generatedAt": "2026-07-03T23:17:29",
+  "source": "规则词典MVP",
   "summary": {
     "eventCount": 3,
     "positiveCount": 2,
@@ -10,6 +12,7 @@
   "events": [
     {
       "eventId": "sample-news-1",
+      "tradeDate": "2026-07-02",
       "time": "09:20",
       "source": "公开政策源",
       "title": "新型基础设施政策延续，算力和数据中心建设提速",
@@ -22,6 +25,7 @@
     },
     {
       "eventId": "sample-news-2",
+      "tradeDate": "2026-07-02",
       "time": "10:35",
       "source": "财经快讯",
       "title": "半导体国产替代订单预期改善",
@@ -34,6 +38,7 @@
     },
     {
       "eventId": "sample-news-3",
+      "tradeDate": "2026-07-02",
       "time": "13:40",
       "source": "交易所公告",
       "title": "部分高位主题公司披露减持计划",

@@ -51,4 +51,23 @@ fi
 
 cli "${ARGS[@]}"
 
+TRADE_DATE="${PAPER_TRADE_DATE:-${PAPER_END:-${BACKTEST_END:-}}}"
+if [[ -z "$TRADE_DATE" ]]; then
+  TRADE_DATE="$(python3 - <<'PY'
+import json
+from pathlib import Path
+path = Path("src/data/dataStatus.json")
+print(json.loads(path.read_text(encoding="utf-8"))["summary"]["latestTradeDate"] if path.exists() else "")
+PY
+)"
+fi
+
+if [[ -n "$TRADE_DATE" && "$PAPER_SOURCE" == "baostock" ]]; then
+  cli index-quotes --trade-date "$TRADE_DATE" --output src/data/indexQuotes.json --retry "$PAPER_RETRY"
+fi
+
+if [[ -n "$TRADE_DATE" ]]; then
+  cli news-events --trade-date "$TRADE_DATE" --output src/data/newsReport.json
+fi
+
 echo "Paper daily pipeline completed."

@@ -13,6 +13,7 @@ from trading_platform.backtest.portfolio_report import write_portfolio_report
 from trading_platform.backtest.stability import write_stability_report
 from trading_platform.config import DEFAULT_CONFIG, load_app_config
 from trading_platform.data.baostock_provider import BaoStockSession
+from trading_platform.data.index_quotes import write_baostock_index_quote_report
 from trading_platform.data.csv_provider import CsvDataProvider, parse_date
 from trading_platform.data.sqlite_store import SQLiteStore
 from trading_platform.data.status import write_data_status_report
@@ -81,8 +82,16 @@ def build_parser() -> argparse.ArgumentParser:
     simulation.set_defaults(func=run_simulation_plan)
 
     news = subparsers.add_parser("news-events", help="export rule-based policy/news JSON")
+    news.add_argument("--trade-date", type=parse_date)
     news.add_argument("--output", type=Path, default=app_config.news_output)
     news.set_defaults(func=run_news_events)
+
+    index_quotes = subparsers.add_parser("index-quotes", help="export major A-share index quotes JSON")
+    index_quotes.add_argument("--trade-date", type=parse_date, required=True)
+    index_quotes.add_argument("--output", type=Path, default=Path("src/data/indexQuotes.json"))
+    index_quotes.add_argument("--timeout", type=float, default=20.0)
+    index_quotes.add_argument("--retry", type=int, default=1)
+    index_quotes.set_defaults(func=run_index_quotes)
 
     sync_tushare = subparsers.add_parser("sync-tushare", help="sync Tushare Pro data into SQLite")
     sync_tushare.add_argument("--db", type=Path, default=app_config.trading_db)
@@ -323,8 +332,13 @@ def run_simulation_plan(args: argparse.Namespace) -> None:
 
 
 def run_news_events(args: argparse.Namespace) -> None:
-    report = write_news_report(args.output)
+    report = write_news_report(args.output, getattr(args, "trade_date", None))
     print(json.dumps(report["summary"], ensure_ascii=False, indent=2))
+
+
+def run_index_quotes(args: argparse.Namespace) -> None:
+    report = write_baostock_index_quote_report(args.trade_date, args.output, args.timeout, args.retry)
+    print(json.dumps({"tradeDate": report["tradeDate"], "quotes": report["quotes"], "missingCodes": report.get("missingCodes", [])}, ensure_ascii=False, indent=2))
 
 
 def run_sync_tushare(args: argparse.Namespace) -> None:
@@ -527,7 +541,7 @@ def run_pipeline(args: argparse.Namespace) -> None:
     print("step 5/8: export simulation plan JSON")
     run_simulation_plan(argparse.Namespace(db=args.db, account_id=args.account_id, trade_date=args.end, output=args.simulation_output))
     print("step 6/8: export news event JSON")
-    run_news_events(argparse.Namespace(output=args.news_output))
+    run_news_events(argparse.Namespace(output=args.news_output, trade_date=args.end))
     print("step 7/8: run backtest and export frontend JSON")
     backtest_args = argparse.Namespace(
         data_dir=None,
@@ -638,7 +652,7 @@ def run_paper_pipeline(args: argparse.Namespace) -> None:
             )
         )
         print("paper step 7/9: export news event JSON")
-        run_news_events(argparse.Namespace(output=args.news_output))
+        run_news_events(argparse.Namespace(output=args.news_output, trade_date=trade_date))
         print("paper step 8/9: export data status JSON")
         run_data_status(argparse.Namespace(db=args.db, output=args.data_status_output, source_name=_data_source_name(args.source)))
         metrics = collect_paper_metrics(store, args.account_id, trade_date)
@@ -694,7 +708,7 @@ def run_paper_replay(args: argparse.Namespace) -> None:
                 )
             )
 
-        run_news_events(argparse.Namespace(output=args.news_output))
+        run_news_events(argparse.Namespace(output=args.news_output, trade_date=args.end))
         run_data_status(argparse.Namespace(db=args.db, output=args.data_status_output, source_name=args.source_name))
         metrics = collect_paper_metrics(store, args.account_id, trade_dates[-1])
         metrics["plannedOrderCount"] = last_simulation_report.get("summary", {}).get("plannedOrderCount", 0)

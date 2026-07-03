@@ -27,6 +27,15 @@ cli paper-pipeline \
   --news-output "$SMOKE_OUTPUT_DIR/newsReport.json" \
   --run-log-output "$SMOKE_OUTPUT_DIR/runLog.json"
 
+cli index-quotes \
+  --trade-date "$SMOKE_END" \
+  --output "$SMOKE_OUTPUT_DIR/indexQuotes.json" \
+  --retry "$PAPER_RETRY"
+
+cli news-events \
+  --trade-date "$SMOKE_END" \
+  --output "$SMOKE_OUTPUT_DIR/newsReport.json"
+
 python3 - <<'PY'
 import json
 from pathlib import Path
@@ -36,6 +45,7 @@ status = json.loads((root / "dataStatus.json").read_text(encoding="utf-8"))
 account = json.loads((root / "simulationAccount.json").read_text(encoding="utf-8"))
 signals = json.loads((root / "signalReport.json").read_text(encoding="utf-8"))
 run_log = json.loads((root / "runLog.json").read_text(encoding="utf-8"))
+index_quotes = json.loads((root / "indexQuotes.json").read_text(encoding="utf-8"))
 
 summary = {
     "latestTradeDate": status["summary"]["latestTradeDate"],
@@ -52,6 +62,7 @@ summary = {
     "totalAsset": account["account"]["totalAsset"],
     "positionCount": account["summary"]["positionCount"],
     "latestRunStatus": run_log["summary"]["latestStatus"],
+    "indexQuoteCount": len(index_quotes.get("quotes", [])),
 }
 (root / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(summary, ensure_ascii=False, indent=2))

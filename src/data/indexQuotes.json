@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "source": "BaoStock",
+  "tradeDate": "2026-07-02",
+  "generatedAt": "2026-07-03T23:17:36",
+  "quotes": [
+    {
+      "name": "上证",
+      "code": "000001.SH",
+      "value": 4028.9038,
+      "change": -83.5415,
+      "changePct": -2.0314,
+      "updatedAt": "2026-07-02",
+      "trend": "down"
+    },
+    {
+      "name": "深证",
+      "code": "399001.SZ",
+      "value": 15498.8101,
+      "change": -620.3582,
+      "changePct": -3.8486,
+      "updatedAt": "2026-07-02",
+      "trend": "down"
+    },
+    {
+      "name": "创业板",
+      "code": "399006.SZ",
+      "value": 4017.2735,
+      "change": -243.4473,
+      "changePct": -5.7138,
+      "updatedAt": "2026-07-02",
+      "trend": "down"
+    },
+    {
+      "name": "沪深300",
+      "code": "000300.SH",
+      "value": 4812.2957,
+      "change": -146.6816,
+      "changePct": -2.9579,
+      "updatedAt": "2026-07-02",
+      "trend": "down"
+    }
+  ]
+}

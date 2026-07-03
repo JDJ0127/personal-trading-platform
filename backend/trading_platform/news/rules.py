@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -18,13 +18,14 @@ SAMPLE_NEWS = [
 ]
 
 
-def build_news_report() -> dict[str, Any]:
+def build_news_report(trade_date: date | None = None) -> dict[str, Any]:
     events = []
     for index, item in enumerate(SAMPLE_NEWS, start=1):
         mapping = _map_event(item["title"])
         events.append(
             {
                 "eventId": f"sample-news-{index}",
+                "tradeDate": trade_date.isoformat() if trade_date else "",
                 "time": item["time"],
                 "source": item["source"],
                 "title": item["title"],
@@ -38,7 +39,9 @@ def build_news_report() -> dict[str, Any]:
         )
     return {
         "schemaVersion": 1,
+        "tradeDate": trade_date.isoformat() if trade_date else "",
         "generatedAt": datetime.now().isoformat(timespec="seconds"),
+        "source": "规则词典MVP",
         "summary": {
             "eventCount": len(events),
             "positiveCount": sum(1 for event in events if event["sentiment"] == "positive"),
@@ -49,8 +52,8 @@ def build_news_report() -> dict[str, Any]:
     }
 
 
-def write_news_report(output: str | Path) -> dict[str, Any]:
-    report = build_news_report()
+def write_news_report(output: str | Path, trade_date: date | None = None) -> dict[str, Any]:
+    report = build_news_report(trade_date)
     output_path = Path(output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

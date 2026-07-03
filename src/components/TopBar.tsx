@@ -1,4 +1,7 @@
-import { accountSummary, indexQuotes } from "../data/mockData";
+import rawIndexQuotes from "../data/indexQuotes.json";
+import { accountSummary, type IndexQuote } from "../data/mockData";
+
+const indexQuotes = rawIndexQuotes.quotes as IndexQuote[];
 
 export function TopBar() {
   return (
