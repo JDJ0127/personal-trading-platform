@@ -376,6 +376,23 @@ td {
   color: #8a5a00;
 }
 
+.numeric-up {
+  color: #b42318;
+  font-weight: 800;
+}
+
+.numeric-down {
+  color: #137333;
+  font-weight: 800;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
 .score-card {
   border-top: 1px solid #edf1f6;
   padding: 14px 0;

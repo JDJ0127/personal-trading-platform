@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "tradeDate": "2026-07-03",
+  "generatedAt": "2026-07-05T13:15:00",
+  "source": "公开行情汇总 + 本地指数前收盘计算",
+  "summary": {
+    "stance": "修复反弹，结构性活跃",
+    "riskLevel": "中性偏谨慎",
+    "marketScore": 3,
+    "maxSuggestedWeight": 0.6,
+    "totalTurnoverCny": 3205476000000,
+    "turnoverChangeCny": -268700000000,
+    "limitUpCount": 160,
+    "limitDownCount": 24,
+    "upCount": 3804,
+    "downCount": 1628,
+    "flatCount": 96,
+    "northboundNote": "沪深股通暂停交易，北向资金无成交。"
+  },
+  "indices": [
+    {
+      "name": "上证指数",
+      "code": "000001.SH",
+      "close": 4043.64,
+      "change": 14.74,
+      "changePct": 0.37,
+      "comment": "连续回补前一交易日大跌后的缺口，权重端贡献稳定。"
+    },
+    {
+      "name": "深证成指",
+      "code": "399001.SZ",
+      "close": 15597.51,
+      "change": 98.70,
+      "changePct": 0.64,
+      "comment": "弹性强于沪指，成长方向修复力度更明显。"
+    },
+    {
+      "name": "创业板指",
+      "code": "399006.SZ",
+      "close": 4019.93,
+      "change": 2.66,
+      "changePct": 0.07,
+      "comment": "收红但力度偏弱，说明高弹性资产分歧仍在。"
+    },
+    {
+      "name": "沪深300",
+      "code": "000300.SH",
+      "close": 4842.17,
+      "change": 29.87,
+      "changePct": 0.62,
+      "comment": "大盘蓝筹修复，支撑市场风险偏好。"
+    },
+    {
+      "name": "科创50",
+      "code": "000688.SH",
+      "close": 1975.60,
+      "change": -11.72,
+      "changePct": -0.59,
+      "comment": "科技高估值方向承压，是当天主要弱项。"
+    }
+  ],
+  "hotSectors": [
+    { "name": "机器人", "direction": "strong", "reason": "主题资金活跃，涨停扩散度高。" },
+    { "name": "贵金属", "direction": "strong", "reason": "避险与价格预期驱动，表现靠前。" },
+    { "name": "航空装备", "direction": "strong", "reason": "军工链资金回流，板块热度提升。" },
+    { "name": "船舶制造", "direction": "strong", "reason": "高景气预期延续，资金承接较好。" }
+  ],
+  "weakSectors": [
+    { "name": "科创成长", "direction": "weak", "reason": "科创50 收跌，科技高弹性方向分歧较大。" },
+    { "name": "高位题材", "direction": "watch", "reason": "市场修复但成交缩量，高位股仍需防回撤。" }
+  ],
+  "interpretation": [
+    "市场从 7 月 2 日大跌后出现修复，主要指数多数收红，但成交额明显缩量，说明反弹质量不是全面放量进攻。",
+    "上涨家数明显多于下跌家数，涨停数量大幅多于跌停数量，短线情绪有所恢复。",
+    "结构上机器人、贵金属、航空装备、船舶制造等方向更强，科创50 走弱提示科技成长内部仍有分化。",
+    "对模拟盘而言，适合把仓位从防守状态恢复到中性，不宜直接满仓追涨。"
+  ],
+  "actions": [
+    "组合仓位建议控制在 60% 以内，优先选择放量修复且未远离均线的标的。",
+    "新开仓以强势板块中的低回撤品种为主，避免追高连续加速个股。",
+    "若后续成交额重新放大且科创50 转强，可上调风险偏好；若指数冲高回落，则保留现金。"
+  ]
+}

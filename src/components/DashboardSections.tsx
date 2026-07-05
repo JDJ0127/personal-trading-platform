@@ -8,6 +8,7 @@ import rawDataStatus from "../data/dataStatus.json";
 import rawStockPool from "../data/stockPool.json";
 import rawSignalReport from "../data/signalReport.json";
 import rawMarketRisk from "../data/marketRisk.json";
+import rawMarketAnalysis from "../data/marketAnalysis.json";
 import rawSimulationReport from "../data/simulationReport.json";
 import rawSimulationAccount from "../data/simulationAccount.json";
 import rawRunLog from "../data/runLog.json";
@@ -169,6 +170,41 @@ type MarketRiskReport = {
 };
 
 const marketRisk = rawMarketRisk as MarketRiskReport;
+
+type MarketAnalysisReport = {
+  schemaVersion: number;
+  tradeDate: string;
+  generatedAt: string;
+  source: string;
+  summary: {
+    stance: string;
+    riskLevel: string;
+    marketScore: number;
+    maxSuggestedWeight: number;
+    totalTurnoverCny: number;
+    turnoverChangeCny: number;
+    limitUpCount: number;
+    limitDownCount: number;
+    upCount: number;
+    downCount: number;
+    flatCount: number;
+    northboundNote: string;
+  };
+  indices: Array<{
+    name: string;
+    code: string;
+    close: number;
+    change: number;
+    changePct: number;
+    comment: string;
+  }>;
+  hotSectors: Array<{ name: string; direction: string; reason: string }>;
+  weakSectors: Array<{ name: string; direction: string; reason: string }>;
+  interpretation: string[];
+  actions: string[];
+};
+
+const marketAnalysis = rawMarketAnalysis as MarketAnalysisReport;
 
 type MarketQuotesReport = {
   schemaVersion: number;
@@ -1103,13 +1139,89 @@ function HomeSection() {
 function MarketSection() {
   return (
     <>
-      <PageHeader title="市场环境" description={`交易日 ${marketRisk.tradeDate} · 展示市场评分、市场宽度、新高新低和仓位上限。`} />
+      <PageHeader title="市场环境" description={`交易日 ${marketAnalysis.tradeDate} · 展示收盘指数、市场宽度、热点方向和模拟盘动作建议。`} />
       <div className="stat-grid compact">
-        <StatCard label="市场评分" value={`${marketRisk.market.score}/5`} hint={marketRisk.market.state} />
-        <StatCard label="组合最大仓位" value={ratioPct(marketRisk.market.maxWeight)} hint="由市场评分决定" />
-        <StatCard label="上涨股票占比" value={`${marketRisk.market.breadthUpPct}%`} hint={`${marketRisk.market.upCount} 涨 / ${marketRisk.market.downCount} 跌`} tone={marketRisk.market.breadthUpPct > 55 ? "up" : "down"} />
-        <StatCard label="短期新高/新低" value={`${marketRisk.market.newHighCount}/${marketRisk.market.newLowCount}`} hint="市场宽度辅助项" />
+        <StatCard label="市场结论" value={marketAnalysis.summary.stance} hint={marketAnalysis.summary.riskLevel} />
+        <StatCard label="市场评分" value={`${marketAnalysis.summary.marketScore}/5`} hint={`建议仓位 ${ratioPct(marketAnalysis.summary.maxSuggestedWeight)}`} />
+        <StatCard label="成交额" value={`${(marketAnalysis.summary.totalTurnoverCny / 100000000).toLocaleString("zh-CN")} 亿`} hint={`较前日 ${money(marketAnalysis.summary.turnoverChangeCny / 100000000)} 亿`} tone={marketAnalysis.summary.turnoverChangeCny >= 0 ? "up" : "down"} />
+        <StatCard label="涨跌家数" value={`${marketAnalysis.summary.upCount}/${marketAnalysis.summary.downCount}`} hint={`平盘 ${marketAnalysis.summary.flatCount} · 涨停/跌停 ${marketAnalysis.summary.limitUpCount}/${marketAnalysis.summary.limitDownCount}`} tone="up" />
       </div>
+      <section className="panel">
+        <h2>主要指数</h2>
+        <div className="table-card">
+          <table className="compact-table">
+            <thead>
+              <tr><th>指数</th><th>收盘</th><th>涨跌额</th><th>涨跌幅</th><th>解读</th></tr>
+            </thead>
+            <tbody>
+              {marketAnalysis.indices.map((item) => (
+                <tr key={item.code}>
+                  <td>{item.name}</td>
+                  <td>{money(item.close)}</td>
+                  <td className={item.change >= 0 ? "numeric-up" : "numeric-down"}>{item.change >= 0 ? "+" : ""}{money(item.change)}</td>
+                  <td className={item.changePct >= 0 ? "numeric-up" : "numeric-down"}>{item.changePct >= 0 ? "+" : ""}{item.changePct.toFixed(2)}%</td>
+                  <td>{item.comment}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <div className="two-column">
+        <section className="panel">
+          <h2>强势方向</h2>
+          <div className="tag-cloud">
+            {marketAnalysis.hotSectors.map((sector) => (
+              <span key={sector.name} className="signal-tag buy">{sector.name}</span>
+            ))}
+          </div>
+          <div className="summary-grid">
+            {marketAnalysis.hotSectors.map((sector) => (
+              <div className="summary-line" key={sector.name}>
+                <span>{sector.name}</span>
+                <strong>{sector.reason}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section className="panel">
+          <h2>风险观察</h2>
+          <div className="summary-grid">
+            {marketAnalysis.weakSectors.map((sector) => (
+              <div className="summary-line" key={sector.name}>
+                <span>{sector.name}</span>
+                <strong>{sector.reason}</strong>
+              </div>
+            ))}
+            <div className="summary-line">
+              <span>北向资金</span>
+              <strong>{marketAnalysis.summary.northboundNote}</strong>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section className="panel">
+        <h2>市场解读</h2>
+        <div className="check-grid">
+          {marketAnalysis.interpretation.map((item) => (
+            <div className="check-item" key={item}>
+              <span className="check-dot pass" />
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="panel">
+        <h2>模拟盘动作</h2>
+        <div className="check-grid">
+          {marketAnalysis.actions.map((item) => (
+            <div className="check-item" key={item}>
+              <span className="check-dot pass" />
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+      </section>
       <section className="panel">
         <h2>评分条件</h2>
         <div className="check-grid">
