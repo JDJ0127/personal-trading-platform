@@ -1,44 +1,44 @@
 {
   "schemaVersion": 1,
-  "source": "公开行情汇总 + 本地前收盘计算",
-  "tradeDate": "2026-07-03",
-  "generatedAt": "2026-07-05T13:15:00",
+  "source": "东方财富历史指数行情",
+  "tradeDate": "2026-07-02",
+  "generatedAt": "2026-07-05T13:37:40",
   "quotes": [
     {
       "name": "上证",
       "code": "000001.SH",
-      "value": 4043.64,
-      "change": 14.74,
-      "changePct": 0.37,
-      "updatedAt": "2026-07-03",
-      "trend": "up"
+      "value": 4028.90,
+      "change": -83.55,
+      "changePct": -2.03,
+      "updatedAt": "2026-07-02",
+      "trend": "down"
     },
     {
       "name": "深证",
       "code": "399001.SZ",
-      "value": 15597.51,
-      "change": 98.70,
-      "changePct": 0.64,
-      "updatedAt": "2026-07-03",
-      "trend": "up"
+      "value": 15498.81,
+      "change": -620.36,
+      "changePct": -3.85,
+      "updatedAt": "2026-07-02",
+      "trend": "down"
     },
     {
       "name": "创业板",
       "code": "399006.SZ",
-      "value": 4019.93,
-      "change": 2.66,
-      "changePct": 0.07,
-      "updatedAt": "2026-07-03",
-      "trend": "up"
+      "value": 4017.27,
+      "change": -243.45,
+      "changePct": -5.71,
+      "updatedAt": "2026-07-02",
+      "trend": "down"
     },
     {
       "name": "沪深300",
       "code": "000300.SH",
-      "value": 4842.17,
-      "change": 29.87,
-      "changePct": 0.62,
-      "updatedAt": "2026-07-03",
-      "trend": "up"
+      "value": 4812.30,
+      "change": -146.68,
+      "changePct": -2.96,
+      "updatedAt": "2026-07-02",
+      "trend": "down"
     }
   ]
 }

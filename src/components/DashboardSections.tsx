@@ -1137,6 +1137,8 @@ function HomeSection() {
 }
 
 function MarketSection() {
+  const breadthTone = marketAnalysis.summary.upCount >= marketAnalysis.summary.downCount ? "up" : "down";
+
   return (
     <>
       <PageHeader title="市场环境" description={`交易日 ${marketAnalysis.tradeDate} · 展示收盘指数、市场宽度、热点方向和模拟盘动作建议。`} />
@@ -1144,7 +1146,7 @@ function MarketSection() {
         <StatCard label="市场结论" value={marketAnalysis.summary.stance} hint={marketAnalysis.summary.riskLevel} />
         <StatCard label="市场评分" value={`${marketAnalysis.summary.marketScore}/5`} hint={`建议仓位 ${ratioPct(marketAnalysis.summary.maxSuggestedWeight)}`} />
         <StatCard label="成交额" value={`${(marketAnalysis.summary.totalTurnoverCny / 100000000).toLocaleString("zh-CN")} 亿`} hint={`较前日 ${money(marketAnalysis.summary.turnoverChangeCny / 100000000)} 亿`} tone={marketAnalysis.summary.turnoverChangeCny >= 0 ? "up" : "down"} />
-        <StatCard label="涨跌家数" value={`${marketAnalysis.summary.upCount}/${marketAnalysis.summary.downCount}`} hint={`平盘 ${marketAnalysis.summary.flatCount} · 涨停/跌停 ${marketAnalysis.summary.limitUpCount}/${marketAnalysis.summary.limitDownCount}`} tone="up" />
+        <StatCard label="涨跌家数" value={`${marketAnalysis.summary.upCount}/${marketAnalysis.summary.downCount}`} hint={`平盘 ${marketAnalysis.summary.flatCount} · 涨停/跌停 ${marketAnalysis.summary.limitUpCount}/${marketAnalysis.summary.limitDownCount}`} tone={breadthTone} />
       </div>
       <section className="panel">
         <h2>主要指数</h2>
