@@ -1141,7 +1141,7 @@ function MarketSection() {
 
   return (
     <>
-      <PageHeader title="市场环境" description={`交易日 ${marketAnalysis.tradeDate} · 展示收盘指数、市场宽度、热点方向和模拟盘动作建议。`} />
+      <PageHeader title="市场环境" description={`交易日 ${marketAnalysis.tradeDate} · 全市场口径，展示收盘指数、市场宽度、热点方向和模拟盘动作建议。`} />
       <div className="stat-grid compact">
         <StatCard label="市场结论" value={marketAnalysis.summary.stance} hint={marketAnalysis.summary.riskLevel} />
         <StatCard label="市场评分" value={`${marketAnalysis.summary.marketScore}/5`} hint={`建议仓位 ${ratioPct(marketAnalysis.summary.maxSuggestedWeight)}`} />
@@ -1241,14 +1241,16 @@ function MarketSection() {
 }
 
 function UniverseSection() {
+  const selectedStocks = stockPool.stocks.filter((stock) => stock.isPass);
+
   return (
     <>
-      <PageHeader title="股票池" description={`交易日 ${stockPool.tradeDate} · 基础过滤、流动性过滤和可交易股票池统计。`} />
+      <PageHeader title="股票池" description={`交易日 ${stockPool.tradeDate} · 基于全市场数据按平台策略过滤，列表仅展示符合入池条件的股票。`} />
       <div className="stat-grid compact">
-        <StatCard label="全市场股票" value={stockPool.summary.total.toLocaleString("zh-CN")} />
-        <StatCard label="可交易股票池" value={stockPool.summary.passed.toLocaleString("zh-CN")} />
+        <StatCard label="全市场候选" value={stockPool.summary.total.toLocaleString("zh-CN")} hint="数据源返回的上市股票范围" />
+        <StatCard label="入池股票" value={stockPool.summary.passed.toLocaleString("zh-CN")} hint="通过基础和流动性过滤" />
         <StatCard label="过滤剔除" value={stockPool.summary.blocked.toLocaleString("zh-CN")} />
-        <StatCard label="通过率" value={ratioPct(stockPool.summary.passRate)} />
+        <StatCard label="入池率" value={ratioPct(stockPool.summary.passRate)} />
       </div>
       <section className="panel">
         <h2>过滤原因统计</h2>
@@ -1267,38 +1269,40 @@ function UniverseSection() {
       </section>
       <section className="panel">
         <h2>股票池列表</h2>
-        <div className="table-card">
-          <table>
-            <thead>
-              <tr>
-                <th>代码</th>
-                <th>名称</th>
-                <th>市场</th>
-                <th>状态</th>
-                <th>过滤原因</th>
-                <th>上市天数</th>
-                <th>收盘价</th>
-                <th>成交额</th>
-                <th>均额</th>
-              </tr>
-            </thead>
-            <tbody>
-              {stockPool.stocks.map((stock) => (
-                <tr key={stock.tsCode}>
-                  <td>{stock.tsCode}</td>
-                  <td>{stock.name}</td>
-                  <td>{stock.industry}</td>
-                  <td><span className={`status-chip ${stock.isPass ? "ok" : "pending"}`}>{stock.isPass ? "通过" : "阻断"}</span></td>
-                  <td>{stock.filterReasons.length ? stock.filterReasons.join("、") : "--"}</td>
-                  <td>{stock.listedDays}</td>
-                  <td>{stock.close === null ? "--" : stock.close.toFixed(2)}</td>
-                  <td>{compactMoney(stock.amount)}</td>
-                  <td>{compactMoney(stock.avgAmount)}</td>
+        {selectedStocks.length === 0 ? (
+          <div className="empty-state">当前交易日没有股票满足入池条件。</div>
+        ) : (
+          <div className="table-card">
+            <table>
+              <thead>
+                <tr>
+                  <th>代码</th>
+                  <th>名称</th>
+                  <th>市场</th>
+                  <th>状态</th>
+                  <th>上市天数</th>
+                  <th>收盘价</th>
+                  <th>成交额</th>
+                  <th>均额</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {selectedStocks.map((stock) => (
+                  <tr key={stock.tsCode}>
+                    <td>{stock.tsCode}</td>
+                    <td>{stock.name}</td>
+                    <td>{stock.industry}</td>
+                    <td><span className="status-chip ok">入池</span></td>
+                    <td>{stock.listedDays}</td>
+                    <td>{stock.close === null ? "--" : stock.close.toFixed(2)}</td>
+                    <td>{compactMoney(stock.amount)}</td>
+                    <td>{compactMoney(stock.avgAmount)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
     </>
   );
@@ -1518,7 +1522,7 @@ function ReplaySection() {
             <strong>{replayMarketRisk.market.score}/5 · {replayMarketRisk.market.state}</strong>
           </div>
           <div className="summary-line">
-            <span>上涨股票占比</span>
+            <span>样本上涨占比</span>
             <strong>{replayMarketRisk.market.breadthUpPct}%</strong>
           </div>
           <div className="summary-line">
@@ -1533,7 +1537,7 @@ function ReplaySection() {
             <strong>{latestRun?.workflow ?? "--"}</strong>
           </div>
           <div className="summary-line">
-            <span>股票池/信号</span>
+            <span>股票范围/信号</span>
             <strong>{latestRun ? `${latestRun.stockCount} / ${latestRun.signalCount}` : "--"}</strong>
           </div>
           <div className="summary-line">
@@ -1657,7 +1661,7 @@ function DataSection() {
       </div>
       <div className="stat-grid compact">
         <StatCard label="行情覆盖率" value={ratioPct(dataCoverage.coverageRate)} hint={`${dataCoverage.actualBarCount}/${dataCoverage.expectedBarCount} 条`} tone={coverageTone} />
-        <StatCard label="覆盖股票数" value={`${dataCoverage.barStockCount}`} hint={`基础信息 ${dataCoverage.stockCount} 只`} />
+        <StatCard label="行情覆盖股票" value={`${dataCoverage.barStockCount}`} hint={`基础信息 ${dataCoverage.stockCount} 只`} />
         <StatCard label="覆盖交易日" value={`${dataCoverage.barTradeDayCount}`} hint={`${dataCoverage.startDate} - ${dataCoverage.endDate}`} />
         <StatCard label="缺失行情" value={`${dataCoverage.missingBarCount}`} hint="按股票 x 交易日估算" tone={dataCoverage.missingBarCount > 0 ? "down" : "flat"} />
       </div>
@@ -1839,7 +1843,7 @@ function ReportSection() {
                   <th>交易日</th>
                   <th>状态</th>
                   <th>耗时</th>
-                  <th>股票池</th>
+                  <th>股票范围</th>
                   <th>信号</th>
                   <th>计划/阻断</th>
                   <th>订单/成交</th>

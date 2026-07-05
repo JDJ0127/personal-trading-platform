@@ -23,7 +23,13 @@ ARGS=(
 if [[ "$PAPER_SOURCE" == "sample" ]]; then
   ARGS+=(--data-dir "$SAMPLE_DATA_DIR")
 else
-  ARGS+=(--retry "$PAPER_RETRY" --continue-on-error --max-codes "$PAPER_MAX_CODES")
+  ARGS+=(--retry "$PAPER_RETRY" --continue-on-error)
+  if [[ -n "$PAPER_MAX_CODES" ]]; then
+    ARGS+=(--max-codes "$PAPER_MAX_CODES")
+  fi
+  if [[ "$PAPER_SOURCE" == "baostock" && "$PAPER_ALL_STOCK" != "0" && -z "${PAPER_CODES:-}" ]]; then
+    ARGS+=(--all-stock)
+  fi
   if [[ "$PAPER_SOURCE" == "market" ]]; then
     ARGS+=(--adjust "$PAPER_ADJUST")
   fi

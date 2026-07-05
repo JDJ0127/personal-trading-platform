@@ -48,7 +48,8 @@ cp .env.example .env
 ```bash
 PAPER_SOURCE=baostock
 PAPER_ADJUST=qfq
-PAPER_MAX_CODES=30
+PAPER_ALL_STOCK=1
+PAPER_MAX_CODES=
 PAPER_START=2025-01-01
 PAPER_END=2026-06-16
 PAPER_TRADE_DATE=2026-06-16
@@ -59,7 +60,13 @@ PAPER_INCREMENTAL=1
 示例：
 
 ```bash
-PAPER_SOURCE=baostock PAPER_MAX_CODES=60 ./scripts/run_paper_daily.sh
+PAPER_SOURCE=baostock ./scripts/run_paper_daily.sh
+```
+
+快速抽样验证时再限制股票数量：
+
+```bash
+PAPER_SOURCE=baostock PAPER_ALL_STOCK=0 PAPER_MAX_CODES=60 ./scripts/run_paper_daily.sh
 ```
 
 使用 AKShare/mootdx/efinance 聚合源：

@@ -21,13 +21,19 @@ cp .env.example .env
 确认 `docs/real_data_smoke_result.md` 里状态为 `success` 后，再跑正式每日模拟盘：
 
 ```bash
-PAPER_SOURCE=baostock PAPER_MAX_CODES=30 ./scripts/run_paper_daily.sh
+PAPER_SOURCE=baostock ./scripts/run_paper_daily.sh
 ```
 
 如果是首次同步，建议指定起始日期：
 
 ```bash
-PAPER_SOURCE=baostock PAPER_START=2025-01-01 PAPER_MAX_CODES=30 ./scripts/run_paper_daily.sh
+PAPER_SOURCE=baostock PAPER_START=2025-01-01 ./scripts/run_paper_daily.sh
+```
+
+需要快速验证链路时，显式关闭全市场并限制代码数量：
+
+```bash
+PAPER_SOURCE=baostock PAPER_ALL_STOCK=0 PAPER_MAX_CODES=30 ./scripts/run_paper_daily.sh
 ```
 
 如果数据库已有行情，后续可直接增量：
