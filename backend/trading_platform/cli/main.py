@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from trading_platform.backtest.broker import SimulatedBroker
@@ -15,6 +15,7 @@ from trading_platform.config import DEFAULT_CONFIG, load_app_config
 from trading_platform.data.baostock_provider import BaoStockSession
 from trading_platform.data.index_quotes import write_baostock_index_quote_report
 from trading_platform.data.csv_provider import CsvDataProvider, parse_date
+from trading_platform.data.market_provider import CompositeMarketDataProvider
 from trading_platform.data.sqlite_store import SQLiteStore
 from trading_platform.data.status import write_data_status_report
 from trading_platform.data.tushare_provider import TushareClient, TushareDataProvider
@@ -133,8 +134,26 @@ def build_parser() -> argparse.ArgumentParser:
     backtest.add_argument("--account-output", type=Path, default=app_config.simulation_account_output, help="write persisted simulation account JSON to this path")
     backtest.set_defaults(func=run_backtest)
 
+    sync_market = subparsers.add_parser("sync-market-data", help="sync A-share market data with AKShare primary and efinance/mootdx fallbacks")
+    sync_market.add_argument("--db", type=Path, default=app_config.trading_db)
+    sync_market.add_argument("--start", required=app_config.default_start is None, type=parse_date, default=_optional_config_date(app_config.default_start))
+    sync_market.add_argument("--end", required=app_config.default_end is None, type=parse_date, default=_optional_config_date(app_config.default_end))
+    sync_market.add_argument("--codes", help="comma-separated stock codes, for example 600030.SH,300308.SZ")
+    sync_market.add_argument("--universe-file", type=Path, default=app_config.universe_file)
+    sync_market.add_argument("--code-offset", type=int, default=0)
+    sync_market.add_argument("--max-codes", type=int)
+    sync_market.add_argument("--adjust", default="qfq", choices=["none", "qfq", "hfq"], help="AKShare/efinance adjustment: none, qfq, hfq")
+    sync_market.add_argument("--skip-stock-basic", action="store_true")
+    sync_market.add_argument("--sync-minute", action="store_true", help="also sync minute bars into minute_bar")
+    sync_market.add_argument("--minute-interval", default="1", choices=["1", "5", "15", "30", "60"])
+    sync_market.add_argument("--sync-realtime", action="store_true", help="also capture realtime quote snapshots")
+    sync_market.add_argument("--continue-on-error", action="store_true")
+    sync_market.add_argument("--news-output", type=Path, help="optional live news JSON output path")
+    sync_market.add_argument("--news-code", help="optional stock code for individual stock news")
+    sync_market.set_defaults(func=run_sync_market_data)
+
     pipeline = subparsers.add_parser("pipeline", help="run data load, backtest, and frontend JSON export")
-    pipeline.add_argument("--source", choices=["sample", "tushare", "baostock"], default="sample")
+    pipeline.add_argument("--source", choices=["sample", "tushare", "baostock", "market"], default="sample")
     pipeline.add_argument("--data-dir", type=Path, default=app_config.sample_data_dir)
     pipeline.add_argument("--db", type=Path, default=app_config.trading_db)
     pipeline.add_argument("--token", default=app_config.tushare_token)
@@ -149,6 +168,7 @@ def build_parser() -> argparse.ArgumentParser:
     pipeline.add_argument("--skip-sync", action="store_true", help="skip data sync and reuse the existing SQLite database")
     pipeline.add_argument("--skip-stock-basic", action="store_true", help="skip stock_basic refresh for remote data sources")
     pipeline.add_argument("--adjustflag", default="2", choices=["1", "2", "3"], help="BaoStock adjustment flag")
+    pipeline.add_argument("--adjust", default="qfq", choices=["none", "qfq", "hfq"], help="market source adjustment")
     pipeline.add_argument("--timeout", type=float, default=20.0, help="socket timeout seconds for BaoStock requests")
     pipeline.add_argument("--incremental", action="store_true")
     pipeline.add_argument("--retry", type=int, default=1)
@@ -201,7 +221,7 @@ def build_parser() -> argparse.ArgumentParser:
     paper_run.set_defaults(func=run_paper_run)
 
     paper_pipeline = subparsers.add_parser("paper-pipeline", help="run the daily paper trading workflow")
-    paper_pipeline.add_argument("--source", choices=["sample", "tushare", "baostock"], default="sample")
+    paper_pipeline.add_argument("--source", choices=["sample", "tushare", "baostock", "market"], default="sample")
     paper_pipeline.add_argument("--data-dir", type=Path, default=app_config.sample_data_dir)
     paper_pipeline.add_argument("--db", type=Path, default=app_config.trading_db)
     paper_pipeline.add_argument("--token", default=app_config.tushare_token)
@@ -217,6 +237,7 @@ def build_parser() -> argparse.ArgumentParser:
     paper_pipeline.add_argument("--skip-sync", action="store_true")
     paper_pipeline.add_argument("--skip-stock-basic", action="store_true")
     paper_pipeline.add_argument("--adjustflag", default="2", choices=["1", "2", "3"])
+    paper_pipeline.add_argument("--adjust", default="qfq", choices=["none", "qfq", "hfq"])
     paper_pipeline.add_argument("--timeout", type=float, default=20.0)
     paper_pipeline.add_argument("--incremental", action="store_true")
     paper_pipeline.add_argument("--retry", type=int, default=1)
@@ -422,6 +443,55 @@ def run_sync_baostock(args: argparse.Namespace) -> None:
     print(json.dumps(counts, ensure_ascii=False, indent=2))
 
 
+def run_sync_market_data(args: argparse.Namespace) -> None:
+    store = SQLiteStore(args.db)
+    store.initialize()
+    codes = _select_codes(_requested_market_codes(args.codes, args.universe_file), args.code_offset, args.max_codes)
+    if not codes:
+        codes = [stock.ts_code for stock in store.load_stock_basic() if stock.status == "L"]
+    if not codes:
+        raise SystemExit("sync-market-data requires --codes, --universe-file, or existing stock_basic rows in SQLite.")
+
+    provider = CompositeMarketDataProvider()
+    adjust = "" if args.adjust == "none" else args.adjust
+    stock_basic = [] if args.skip_stock_basic else provider.load_stock_basic(args.end)
+    daily_bars = provider.load_daily_bars(args.start, args.end, codes, adjust=adjust, continue_on_error=args.continue_on_error)
+    issues = validate_daily_bars(daily_bars)
+    if issues:
+        for issue in issues:
+            print(f"{issue.table} {issue.key}: {issue.message}")
+        raise SystemExit(1)
+
+    minute_bars = (
+        provider.load_minute_bars(
+            args.start,
+            args.end,
+            codes,
+            interval=args.minute_interval,
+            adjust=adjust,
+            continue_on_error=args.continue_on_error,
+        )
+        if args.sync_minute
+        else []
+    )
+    realtime_quotes = provider.load_realtime_quotes(codes) if args.sync_realtime else []
+    news_report = _write_live_news_report(provider, args.news_output, args.end, args.news_code) if args.news_output else None
+
+    counts = {
+        "stock_basic": store.upsert_stock_basic(stock_basic),
+        "daily_bar": store.upsert_daily_bars(daily_bars),
+        "minute_bar": store.upsert_minute_bars(minute_bars),
+        "realtime_quote": store.upsert_realtime_quotes(realtime_quotes),
+        "sync_start": args.start.isoformat(),
+        "sync_end": args.end.isoformat(),
+        "requested_codes": len(codes),
+        "source": provider.last_report.source if provider.last_report else "AKShare",
+        "fallback_used": provider.last_report.fallback_used if provider.last_report else False,
+        "news_event": news_report["summary"]["eventCount"] if news_report else 0,
+    }
+    print(json.dumps(counts, ensure_ascii=False, indent=2))
+
+
 def run_backtest(args: argparse.Namespace) -> None:
     stock_basic = []
     store = None
@@ -512,6 +582,26 @@ def run_pipeline(args: argparse.Namespace) -> None:
         )
         print("step 1/8: sync Tushare data")
         run_sync_tushare(sync_args)
+    elif args.source == "market":
+        sync_args = argparse.Namespace(
+            db=args.db,
+            start=args.start,
+            end=args.end,
+            codes=args.codes,
+            universe_file=args.universe_file,
+            code_offset=args.code_offset,
+            max_codes=args.max_codes,
+            adjust=args.adjust,
+            skip_stock_basic=args.skip_stock_basic,
+            sync_minute=False,
+            minute_interval="1",
+            sync_realtime=False,
+            continue_on_error=args.continue_on_error,
+            news_output=None,
+            news_code=None,
+        )
+        print("step 1/8: sync AKShare market data")
+        run_sync_market_data(sync_args)
     else:
         sync_args = argparse.Namespace(
             db=args.db,
@@ -740,7 +830,7 @@ def _optional_config_date(value: str | None) -> date | None:
 
 
 def _data_source_name(source: str) -> str:
-    return {"sample": "CSV样例", "tushare": "Tushare", "baostock": "BaoStock"}.get(source, source)
+    return {"sample": "CSV样例", "tushare": "Tushare", "baostock": "BaoStock", "market": "AKShare/mootdx/efinance"}.get(source, source)
 
 
 def _run_source_sync(args: argparse.Namespace, prefix: str) -> None:
@@ -763,6 +853,30 @@ def _run_source_sync(args: argparse.Namespace, prefix: str) -> None:
                 end=args.end,
                 ts_code=args.ts_code,
                 skip_stock_basic=args.skip_stock_basic,
+            )
+        )
+        return
+    if args.source == "market":
+        if not args.start or not args.end:
+            raise SystemExit("market sync requires --start and --end, or BACKTEST_START/BACKTEST_END in .env")
+        print(f"{prefix}: sync AKShare market data")
+        run_sync_market_data(
+            argparse.Namespace(
+                db=args.db,
+                start=args.start,
+                end=args.end,
+                codes=args.codes,
+                universe_file=args.universe_file,
+                code_offset=args.code_offset,
+                max_codes=args.max_codes,
+                adjust=args.adjust,
+                skip_stock_basic=args.skip_stock_basic,
+                sync_minute=False,
+                minute_interval="1",
+                sync_realtime=False,
+                continue_on_error=args.continue_on_error,
+                news_output=None,
+                news_code=None,
             )
         )
         return
@@ -833,6 +947,13 @@ def _requested_baostock_codes(codes_arg: str | None, universe_file: Path | None)
     return merge_universe_codes(file_codes, _parse_codes(codes_arg))
 
 
+def _requested_market_codes(codes_arg: str | None, universe_file: Path | None) -> list[str]:
+    explicit_codes = _parse_codes(codes_arg)
+    if explicit_codes:
+        return explicit_codes
+    return load_universe_codes(universe_file) if universe_file and universe_file.exists() else []
+
+
 def _select_codes(codes: list[str], offset: int, max_codes: int | None) -> list[str]:
     if offset < 0:
         raise SystemExit("--code-offset must be greater than or equal to 0")
@@ -850,6 +971,43 @@ def _resolve_baostock_codes(codes: list[str], all_stock: bool, stock_basic: list
     if all_stock:
         return [stock.ts_code for stock in stock_basic if stock.status == "L" and stock.market != "指数"]
     return [stock.ts_code for stock in store.load_stock_basic() if stock.status == "L" and stock.market != "指数"]
+
+
+def _write_live_news_report(provider: CompositeMarketDataProvider, output: Path, trade_date: date, code: str | None = None) -> dict:
+    events = provider.load_news_events(code=code)
+    report_events = [
+        {
+            "eventId": f"akshare-news-{index}",
+            "tradeDate": trade_date.isoformat(),
+            "time": event.event_time.strftime("%H:%M"),
+            "source": event.source,
+            "title": event.title,
+            "eventType": "market/news",
+            "sentiment": "neutral",
+            "importance": 60,
+            "sector": "未分类",
+            "passCount": 0,
+            "reason": "AKShare 实时资讯源",
+            "url": event.url,
+        }
+        for index, event in enumerate(events, start=1)
+    ]
+    report = {
+        "schemaVersion": 1,
+        "tradeDate": trade_date.isoformat(),
+        "generatedAt": datetime.now().isoformat(timespec="seconds"),
+        "source": "AKShare",
+        "summary": {
+            "eventCount": len(report_events),
+            "positiveCount": 0,
+            "negativeCount": 0,
+            "highImportanceCount": 0,
+        },
+        "events": report_events,
+    }
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return report
 
 
 def main() -> None:

@@ -57,6 +57,46 @@ class DailyBar:
 
 
 @dataclass(frozen=True)
+class MinuteBar:
+    trade_time: datetime
+    ts_code: str
+    interval: str
+    open: float
+    high: float
+    low: float
+    close: float
+    volume: float
+    amount: float
+    adjust: str = ""
+    source: str = ""
+
+
+@dataclass(frozen=True)
+class RealtimeQuote:
+    quote_time: datetime
+    ts_code: str
+    name: str
+    price: float
+    open: float
+    high: float
+    low: float
+    pre_close: float
+    volume: float
+    amount: float
+    pct_chg: float = 0.0
+    source: str = ""
+
+
+@dataclass(frozen=True)
+class NewsEvent:
+    event_time: datetime
+    source: str
+    title: str
+    url: str = ""
+    content: str = ""
+
+
+@dataclass(frozen=True)
 class LimitPrice:
     trade_date: date
     ts_code: str

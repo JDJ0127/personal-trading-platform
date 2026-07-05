@@ -12,6 +12,7 @@ import rawSimulationReport from "../data/simulationReport.json";
 import rawSimulationAccount from "../data/simulationAccount.json";
 import rawRunLog from "../data/runLog.json";
 import rawNewsReport from "../data/newsReport.json";
+import rawMarketQuotes from "../data/marketQuotes.json";
 import rawReplayMarketRisk from "../data/paperReplay/marketRisk.json";
 import rawReplaySimulationReport from "../data/paperReplay/simulationReport.json";
 import rawReplaySimulationAccount from "../data/paperReplay/simulationAccount.json";
@@ -168,6 +169,38 @@ type MarketRiskReport = {
 };
 
 const marketRisk = rawMarketRisk as MarketRiskReport;
+
+type MarketQuotesReport = {
+  schemaVersion: number;
+  tradeDate: string;
+  generatedAt: string;
+  source: string;
+  summary: {
+    requestedCodeCount: number;
+    dailyBarCount: number;
+    minuteBarCount: number;
+    realtimeQuoteCount: number;
+    newsEventCount: number;
+    fallbackUsed: boolean;
+  };
+  notes: string[];
+  quotes: Array<{
+    quoteTime: string;
+    tsCode: string;
+    name: string;
+    price: number;
+    open: number;
+    high: number;
+    low: number;
+    preClose: number;
+    volume: number;
+    amount: number;
+    pctChg: number;
+    source: string;
+  }>;
+};
+
+const marketQuotes = rawMarketQuotes as MarketQuotesReport;
 
 type SimulationReport = {
   tradeDate: string;
@@ -1514,6 +1547,39 @@ function DataSection() {
         <StatCard label="覆盖交易日" value={`${dataCoverage.barTradeDayCount}`} hint={`${dataCoverage.startDate} - ${dataCoverage.endDate}`} />
         <StatCard label="缺失行情" value={`${dataCoverage.missingBarCount}`} hint="按股票 x 交易日估算" tone={dataCoverage.missingBarCount > 0 ? "down" : "flat"} />
       </div>
+      <section className="panel">
+        <h2>7月3日行情验证</h2>
+        <div className="stat-grid compact">
+          <StatCard label="目标交易日" value={marketQuotes.tradeDate} hint={marketQuotes.source} />
+          <StatCard label="日线/分钟线" value={`${marketQuotes.summary.dailyBarCount}/${marketQuotes.summary.minuteBarCount}`} hint="已按请求日期过滤" tone={marketQuotes.summary.dailyBarCount > 0 ? "up" : "flat"} />
+          <StatCard label="实时快照" value={`${marketQuotes.summary.realtimeQuoteCount}`} hint={`请求 ${marketQuotes.summary.requestedCodeCount} 只`} tone={marketQuotes.summary.realtimeQuoteCount > 0 ? "up" : "down"} />
+          <StatCard label="新闻资讯" value={`${marketQuotes.summary.newsEventCount}`} hint={marketQuotes.summary.fallbackUsed ? "使用兜底源" : "主源返回"} />
+        </div>
+        <div className="empty-state">{marketQuotes.notes.join(" ")}</div>
+        <div className="table-card">
+          <table className="compact-table">
+            <thead>
+              <tr><th>代码</th><th>名称</th><th>最新价</th><th>今开</th><th>最高</th><th>最低</th><th>成交量</th><th>成交额</th><th>来源</th><th>取数时间</th></tr>
+            </thead>
+            <tbody>
+              {marketQuotes.quotes.map((quote) => (
+                <tr key={`${quote.tsCode}-${quote.quoteTime}`}>
+                  <td>{quote.tsCode}</td>
+                  <td>{quote.name || "--"}</td>
+                  <td>{money(quote.price)}</td>
+                  <td>{money(quote.open)}</td>
+                  <td>{money(quote.high)}</td>
+                  <td>{money(quote.low)}</td>
+                  <td>{quote.volume.toLocaleString("zh-CN")}</td>
+                  <td>{currencyFormatter.format(quote.amount)}</td>
+                  <td>{quote.source}</td>
+                  <td>{quote.quoteTime.replace("T", " ")}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
       <div className="two-column">
         <section className="panel">
           <h2>缺失日期</h2>

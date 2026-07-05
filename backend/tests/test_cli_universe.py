@@ -3,7 +3,7 @@ from datetime import date
 from tempfile import TemporaryDirectory
 from pathlib import Path
 
-from trading_platform.cli.main import _incremental_start, _resolve_baostock_sync_dates, _select_codes
+from trading_platform.cli.main import _incremental_start, _requested_market_codes, _resolve_baostock_sync_dates, _select_codes
 from trading_platform.data.sqlite_store import SQLiteStore
 from trading_platform.models import DailyBar
 
@@ -18,6 +18,13 @@ class CliUniverseTest(TestCase):
     def test_limit_codes_rejects_non_positive_limit(self) -> None:
         with self.assertRaises(SystemExit):
             _select_codes(["600030.SH"], 0, 0)
+
+    def test_market_codes_prefer_explicit_codes_over_universe_file(self) -> None:
+        with TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "universe.csv"
+            path.write_text("ts_code\n300308.SZ\n", encoding="utf-8")
+
+            self.assertEqual(_requested_market_codes("600030.SH", path), ["600030.SH"])
 
     def test_incremental_start_uses_day_after_latest_bar(self) -> None:
         with TemporaryDirectory() as tmpdir:

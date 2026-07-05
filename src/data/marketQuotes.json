@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "tradeDate": "2026-07-03",
+  "generatedAt": "2026-07-05T12:45:25",
+  "source": "AKShare/mootdx/efinance",
+  "summary": {
+    "requestedCodeCount": 2,
+    "dailyBarCount": 0,
+    "minuteBarCount": 0,
+    "realtimeQuoteCount": 2,
+    "newsEventCount": 50,
+    "fallbackUsed": false
+  },
+  "notes": [
+    "2026-07-03 历史日线与分钟线接口未返回该日期记录，平台已按请求日期二次过滤，避免写入错误日期数据。",
+    "下方展示的是本次验证中实时行情源返回的快照，quoteTime 为实际取数时间。"
+  ],
+  "quotes": [
+    {
+      "quoteTime": "2026-07-05T12:45:25",
+      "tsCode": "300308.SZ",
+      "name": "中际旭创",
+      "price": 1116.0,
+      "open": 1130.0,
+      "high": 1188.01,
+      "low": 1115.0,
+      "preClose": 0.0,
+      "volume": 328617.0,
+      "amount": 37702361088.0,
+      "pctChg": 0.0,
+      "source": "mootdx"
+    },
+    {
+      "quoteTime": "2026-07-05T12:45:25",
+      "tsCode": "600030.SH",
+      "name": "中信证券",
+      "price": 28.95,
+      "open": 28.88,
+      "high": 29.12,
+      "low": 28.33,
+      "preClose": 0.0,
+      "volume": 2306068.0,
+      "amount": 6628384256.0,
+      "pctChg": 0.0,
+      "source": "mootdx"
+    }
+  ]
+}

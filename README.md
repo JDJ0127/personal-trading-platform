@@ -5,6 +5,7 @@
 ## 当前能力
 
 - BaoStock 免费行情同步，支持增量、重试、单票失败跳过
+- 聚合行情源 `market`：AKShare 作为 A 股日线/分钟线/新闻主源，mootdx 优先获取实时快照，efinance 作为日线兜底
 - 数据覆盖率检查：股票数、交易日数、应有/实际行情、缺失行情明细
 - 股票池、因子信号、市场风控、模拟订单计划
 - 模拟盘账户持久化：账户、订单、成交、持仓、权益曲线
@@ -46,6 +47,7 @@ cp .env.example .env
 
 ```bash
 PAPER_SOURCE=baostock
+PAPER_ADJUST=qfq
 PAPER_MAX_CODES=30
 PAPER_START=2025-01-01
 PAPER_END=2026-06-16
@@ -59,6 +61,31 @@ PAPER_INCREMENTAL=1
 ```bash
 PAPER_SOURCE=baostock PAPER_MAX_CODES=60 ./scripts/run_paper_daily.sh
 ```
+
+使用 AKShare/mootdx/efinance 聚合源：
+
+```bash
+PAPER_SOURCE=market PAPER_ADJUST=qfq PAPER_MAX_CODES=60 ./scripts/run_paper_daily.sh
+```
+
+单独验证指定交易日行情、分钟线、实时快照和新闻：
+
+```bash
+PYTHONPATH=backend python3 -m trading_platform.cli.main sync-market-data \
+  --db data/market_20260703.sqlite \
+  --start 2026-07-03 \
+  --end 2026-07-03 \
+  --codes 600030.SH,300308.SZ \
+  --adjust none \
+  --skip-stock-basic \
+  --sync-minute \
+  --minute-interval 1 \
+  --sync-realtime \
+  --news-output data/market_20260703_news.json \
+  --continue-on-error
+```
+
+`--adjust` 支持 `none`、`qfq`、`hfq`。第三方免费接口可能对未来日期、非交易日或分钟复权返回空结果，平台会按请求日期二次过滤，避免接口忽略日期时写入错误 K 线。
 
 历史区间重跑时关闭增量：
 

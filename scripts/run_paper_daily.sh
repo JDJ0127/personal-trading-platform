@@ -24,6 +24,9 @@ if [[ "$PAPER_SOURCE" == "sample" ]]; then
   ARGS+=(--data-dir "$SAMPLE_DATA_DIR")
 else
   ARGS+=(--retry "$PAPER_RETRY" --continue-on-error --max-codes "$PAPER_MAX_CODES")
+  if [[ "$PAPER_SOURCE" == "market" ]]; then
+    ARGS+=(--adjust "$PAPER_ADJUST")
+  fi
   if [[ "$PAPER_INCREMENTAL" != "0" ]]; then
     ARGS+=(--incremental)
   fi

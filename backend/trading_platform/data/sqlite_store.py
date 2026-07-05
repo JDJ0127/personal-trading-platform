@@ -2,10 +2,22 @@ from __future__ import annotations
 
 import sqlite3
 from collections.abc import Iterable
-from datetime import date
+from datetime import date, datetime, time
 from pathlib import Path
 
-from trading_platform.models import DailyBar, FactorValue, LimitPrice, Signal, SignalType, StockBasic, StockPoolEntry, Suspension, TradeCalendar
+from trading_platform.models import (
+    DailyBar,
+    FactorValue,
+    LimitPrice,
+    MinuteBar,
+    RealtimeQuote,
+    Signal,
+    SignalType,
+    StockBasic,
+    StockPoolEntry,
+    Suspension,
+    TradeCalendar,
+)
 
 
 class SQLiteStore:
@@ -47,6 +59,37 @@ class SQLiteStore:
                   pct_chg real not null,
                   adj_factor real not null,
                   primary key (trade_date, ts_code)
+                );
+
+                create table if not exists minute_bar (
+                  trade_time text not null,
+                  ts_code text not null,
+                  interval text not null,
+                  open real not null,
+                  high real not null,
+                  low real not null,
+                  close real not null,
+                  volume real not null,
+                  amount real not null,
+                  adjust text not null,
+                  source text not null,
+                  primary key (trade_time, ts_code, interval, adjust)
+                );
+
+                create table if not exists realtime_quote (
+                  quote_time text not null,
+                  ts_code text not null,
+                  name text not null,
+                  price real not null,
+                  open real not null,
+                  high real not null,
+                  low real not null,
+                  pre_close real not null,
+                  volume real not null,
+                  amount real not null,
+                  pct_chg real not null,
+                  source text not null,
+                  primary key (quote_time, ts_code, source)
                 );
 
                 create table if not exists limit_price (
@@ -210,6 +253,10 @@ class SQLiteStore:
 
                 create index if not exists idx_daily_bar_code_date
                   on daily_bar (ts_code, trade_date);
+                create index if not exists idx_minute_bar_code_time
+                  on minute_bar (ts_code, trade_time);
+                create index if not exists idx_realtime_quote_code_time
+                  on realtime_quote (ts_code, quote_time desc);
                 create index if not exists idx_simulation_fill_date
                   on simulation_fill (account_id, trade_date);
                 create index if not exists idx_simulation_order_date
@@ -283,6 +330,77 @@ class SQLiteStore:
                   amount=excluded.amount,
                   pct_chg=excluded.pct_chg,
                   adj_factor=excluded.adj_factor
+                """,
+                payload,
+            )
+        return len(payload)
+
+    def upsert_minute_bars(self, rows: Iterable[MinuteBar]) -> int:
+        payload = [
+            (
+                row.trade_time.isoformat(timespec="seconds"),
+                row.ts_code,
+                row.interval,
+                row.open,
+                row.high,
+                row.low,
+                row.close,
+                row.volume,
+                row.amount,
+                row.adjust,
+                row.source,
+            )
+            for row in rows
+        ]
+        with self.connect() as conn:
+            conn.executemany(
+                """
+                insert into minute_bar values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                on conflict(trade_time, ts_code, interval, adjust) do update set
+                  open=excluded.open,
+                  high=excluded.high,
+                  low=excluded.low,
+                  close=excluded.close,
+                  volume=excluded.volume,
+                  amount=excluded.amount,
+                  source=excluded.source
+                """,
+                payload,
+            )
+        return len(payload)
+
+    def upsert_realtime_quotes(self, rows: Iterable[RealtimeQuote]) -> int:
+        payload = [
+            (
+                row.quote_time.isoformat(timespec="seconds"),
+                row.ts_code,
+                row.name,
+                row.price,
+                row.open,
+                row.high,
+                row.low,
+                row.pre_close,
+                row.volume,
+                row.amount,
+                row.pct_chg,
+                row.source,
+            )
+            for row in rows
+        ]
+        with self.connect() as conn:
+            conn.executemany(
+                """
+                insert into realtime_quote values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                on conflict(quote_time, ts_code, source) do update set
+                  name=excluded.name,
+                  price=excluded.price,
+                  open=excluded.open,
+                  high=excluded.high,
+                  low=excluded.low,
+                  pre_close=excluded.pre_close,
+                  volume=excluded.volume,
+                  amount=excluded.amount,
+                  pct_chg=excluded.pct_chg
                 """,
                 payload,
             )
@@ -451,6 +569,60 @@ class SQLiteStore:
             for row in rows
         ]
 
+    def load_minute_bars(self, start: date | None = None, end: date | None = None) -> list[MinuteBar]:
+        query = "select * from minute_bar"
+        params: list[str] = []
+        clauses: list[str] = []
+        if start:
+            clauses.append("trade_time >= ?")
+            params.append(start.isoformat())
+        if end:
+            clauses.append("trade_time <= ?")
+            params.append(datetime.combine(end, time(23, 59, 59)).isoformat())
+        if clauses:
+            query += " where " + " and ".join(clauses)
+        query += " order by trade_time, ts_code"
+
+        with self.connect() as conn:
+            rows = conn.execute(query, params).fetchall()
+        return [
+            MinuteBar(
+                trade_time=datetime.fromisoformat(row["trade_time"]),
+                ts_code=row["ts_code"],
+                interval=row["interval"],
+                open=row["open"],
+                high=row["high"],
+                low=row["low"],
+                close=row["close"],
+                volume=row["volume"],
+                amount=row["amount"],
+                adjust=row["adjust"],
+                source=row["source"],
+            )
+            for row in rows
+        ]
+
+    def load_realtime_quotes(self) -> list[RealtimeQuote]:
+        with self.connect() as conn:
+            rows = conn.execute("select * from realtime_quote order by quote_time desc, ts_code").fetchall()
+        return [
+            RealtimeQuote(
+                quote_time=datetime.fromisoformat(row["quote_time"]),
+                ts_code=row["ts_code"],
+                name=row["name"],
+                price=row["price"],
+                open=row["open"],
+                high=row["high"],
+                low=row["low"],
+                pre_close=row["pre_close"],
+                volume=row["volume"],
+                amount=row["amount"],
+                pct_chg=row["pct_chg"],
+                source=row["source"],
+            )
+            for row in rows
+        ]
+
     def load_stock_basic(self) -> list[StockBasic]:
         with self.connect() as conn:
             rows = conn.execute("select * from stock_basic order by ts_code").fetchall()
@@ -560,6 +732,8 @@ class SQLiteStore:
             ("stock_basic", None),
             ("trade_calendar", "cal_date"),
             ("daily_bar", "trade_date"),
+            ("minute_bar", "trade_time"),
+            ("realtime_quote", "quote_time"),
             ("limit_price", "trade_date"),
             ("suspension", "trade_date"),
             ("stock_pool", "trade_date"),
